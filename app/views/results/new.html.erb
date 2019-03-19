@@ -1,0 +1,37 @@
+<%#= simple_form_for [@event, @result] do |f| %>
+  <%#= f.error_notification %>
+
+  <!-- <div class="form-inputs"> -->
+    <%#= f.input :preference,
+                collection: %w[yes no],
+                include_blank: false %>
+  <!-- </div> -->
+
+  <!-- <div class="form-actions"> -->
+    <%#= f.button :submit, 'Confirm' %>
+  <!-- </div> -->
+<%# end %>
+
+<h1>Movies for <%= @event.name %></h1>
+
+<% @movies.each do |movie| %>
+  <div>
+    <%= link_to 'Me no like this movie', {
+          controller: 'results',
+          action: 'create',
+          preference: 'no',
+          movie_id: movie.id,
+          user_id: current_user,
+          event_id: @event.id
+        }, method: :post %>
+    <%= link_to 'Me do like this movie', {
+          controller: 'results',
+          action: 'create',
+          preference: 'yes',
+          movie_id: movie.id,
+          user_id: current_user,
+          event_id: @event.id
+        }, method: :post %>
+    <%= movie.trakt_payload['title'] %>
+  </div>
+<% end %>
