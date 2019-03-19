@@ -1,0 +1,25 @@
+<!-- new.html.erb
+ -->
+<%= simple_form_for @event do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name,
+                required: true,
+                autofocus: true %>
+    <%= f.input :date,
+                required: true %>
+    <%= f.input :address,
+                required: true,
+                as: :search,
+                  placeholder: 'Where is your movie night?' %>
+  </div>
+
+  <input type="email" name="emails[]">
+  <input type="email" name="emails[]">
+  <input type="email" name="emails[]">
+
+  <div class="form-actions">
+    <%= f.button :submit, "Create", class: "btn-primary" %>
+  </div>
+<% end %>

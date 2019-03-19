@@ -1,6 +1,10 @@
 <!-- index.html.erb -->
 
 <% @events.each do |event| %>
-  <p> <%= event.name %> | <%= event.date %> | <%= event.address %></p>
+  <p> <%= event.name %> | <%= event.date %> | <%= event.address %> <%= link_to event_path(event),
+        method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-trash-alt "></i>
+        <% end %></p>
 <% end %>
+  <%= link_to 'create new', new_event_path %>
 
