@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_095330) do
+ActiveRecord::Schema.define(version: 2019_03_19_102137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_095330) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.jsonb "netflix_payload"
+    t.jsonb "trakt_payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2019_03_19_095330) do
     t.datetime "updated_at", null: false
     t.string "phone_number"
     t.string "avatar"
-    t.jsonb "authentication"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
