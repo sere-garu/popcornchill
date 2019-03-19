@@ -18,6 +18,7 @@ gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'faker'
 end
 
 group :development, :test do
