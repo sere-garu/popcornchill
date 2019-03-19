@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :events do
+  resources :events , except: :index do
     resources :results, only: %i[index new create]
   end
 
