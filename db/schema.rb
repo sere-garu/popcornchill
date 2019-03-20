@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_142906) do
   end
 
   create_table "user_events", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "pending"
     t.bigint "user_id"
     t.bigint "event_id"
     t.datetime "created_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_142906) do
   end
 
   create_table "wishlists", force: :cascade do |t|
-    t.string "preference"
+    t.string "preference", default: "nope"
     t.bigint "user_id"
     t.bigint "movie_id"
     t.datetime "created_at", null: false

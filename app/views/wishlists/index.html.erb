@@ -1,0 +1,42 @@
+<h3>Welcome <%= current_user.name %>, set your watchlist:</h3>
+
+<%= form_tag wishlists_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query,
+      params[:query],
+      class: 'form-control',
+      placeholder: 'Find a movie' %>
+  </p>
+<% end %>
+
+<h3>Your watchlist</h3>
+<% @wishlists.each do |wishlist| %>
+  <p>
+    <%= wishlist.movie.trakt_payload['title'] %>
+    <%#= link_to 'Remove', {
+          controller: 'wishlists',
+          action: 'update',
+          movie_params: {
+            preference: 'nope',
+            movie_id: wishlist.movie.id,
+            user_id: current_user
+          }
+        }, method: :patch %>
+  </p>
+<% end %>
+
+<h3>Pick a movie</h3>
+<% @movies.each do |movie| %>
+  <p>
+    <%= movie.trakt_payload['title'] %>
+    <%= link_to 'Add', {
+          controller: 'wishlists',
+          action: 'create',
+          movie_params: {
+            preference: 'yep',
+            movie_id: movie.id,
+            user_id: current_user
+          }
+        }, method: :post %>
+  </p>
+<% end %>

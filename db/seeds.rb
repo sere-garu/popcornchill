@@ -142,7 +142,7 @@ oscar = User.create!(email: 'oscar@oscar.com',
              phone_number: Faker::PhoneNumber.phone_number,
              avatar: 'http://pluspng.com/img-png/png-cute-cat-our-services-facilities-1698.jpg')
 
-preferences = %w[yes no]
+preferences = %w[yep nope]
 User.all.each do |user|
   Movie.all.each do |movie|
     user.wishlists.create(movie: movie, preference: preferences.sample)
@@ -169,7 +169,7 @@ UserEvent.create!(user_id: damiano.id, event_id: Event.all[1].id, status: status
 
 puts 'Creating results...'
 Event.all.each do |event|
-  movie_ids = event.users.map { |user| user.wishlists.where(preference: 'yes').pluck(:movie_id) }.flatten.uniq
+  movie_ids = event.users.map { |user| user.wishlists.where(preference: 'yep').pluck(:movie_id) }.flatten.uniq
   # puts "movie_ids ---> #{movie_ids}"
 
   all_movies = Movie.where(id: movie_ids)

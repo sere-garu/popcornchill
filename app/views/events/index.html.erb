@@ -1,6 +1,6 @@
 <!-- index.html.erb -->
 <% if @pending_events.any? %>
-  <h1><%= pluralize(@pending_events.count, 'request') %></h1>
+  <h1><%= pluralize(@pending_events.count, 'invite') %></h1>
 
   <% @pending_events.each do |pending| %>
     <% date = pending.event.date.strftime '%A, %e %B' %>
@@ -25,15 +25,18 @@
 
 <h1>Summary</h1>
 
+<p><%= link_to 'Create new', new_event_path %></p>
 <% @events.each do |event| %>
   <% date = event.date.strftime '%A, %e %B' %>
   <p style="margin-bottom: 0">
     <%= event.name %> | <%= date %> | <%= event.address %>
-    <%= link_to 'Delete',
-                event_path(event),
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-    <%= link_to 'Edit', edit_event_path(event) %>
+    <% if event.user_is_admin?(current_user) %>
+      <%= link_to 'Delete',
+                  event_path(event),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    <% end %>
+
     <% if event.swiped? %>
       <%= link_to 'Results', event_results_path(event) %>
     <% elsif event.everyone_pending? %>
@@ -51,5 +54,4 @@
     </small>
   </p>
 <% end %>
-<%= link_to 'Create new', new_event_path %>
 

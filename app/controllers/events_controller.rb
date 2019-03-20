@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @pending_events = current_user.user_events.where(status: 'pending')
-    @events = Event.all
+    @pending_events = current_user.user_events.where(status: 'pending').reverse
+    @events = Event.all.reverse
   end
 
   def show
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
       UserEvent.create(user: current_user, event: @event, status: 'admin')
 
       User.where(email: params['emails']).each do |user|
-        UserEvent.create(user: user, event: @event, status: 'pending')
+        UserEvent.create(user: user, event: @event)
       end
 
       params[:emails].each do |email|
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
         password = SecureRandom.hex(10)
         temp_user = User.create!(email: email, password: password, password_confirmation: password)
-        UserEvent.create(user: temp_user, event: @event, status: 'pending') if temp_user
+        UserEvent.create(user: temp_user, event: @event) if temp_user
       end
 
       redirect_to root_path

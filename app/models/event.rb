@@ -14,8 +14,7 @@ class Event < ApplicationRecord
     user_events.map(&:status).uniq.sort == %w[admin pending]
   end
 
-  # validate that Events have at least two members (admin && invitee)
-  def invited?
-    user_events.user_id.count >= 2
+  def user_is_admin?(user)
+    user_events.where(status: :admin).take.user.name == user.name
   end
 end
