@@ -1,6 +1,6 @@
 <!-- index.html.erb -->
 <% if @pending_events.any? %>
-  <h1><%= pluralize(@pending_events.count, 'request') %></h1>
+  <h1><%= pluralize(@pending_events.count, 'invite') %></h1>
 
   <% @pending_events.each do |pending| %>
     <% date = pending.event.date.strftime '%A, %e %B' %>
