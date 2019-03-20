@@ -1,10 +1,29 @@
 <!-- index.html.erb -->
 
 <% @events.each do |event| %>
-  <p> <%= event.name %> | <%= event.date %> | <%= event.address %> <%= link_to event_path(event),
-        method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-trash-alt "></i>
-        <% end %></p>
+  <% date = event.date.strftime '%A, %e %B' %>
+  <p style="margin-bottom: 0">
+    <%= event.name %> | <%= date %> | <%= event.address %>
+    <%= link_to 'Delete',
+                event_path(event),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+    <% if event.swiped? %>
+      <%= link_to 'Results', event_results_path(event) %>
+    <% elsif event.everyone_pending? %>
+      Still pending...
+    <% else %>
+      <%= link_to 'Swipe', event_path(event) %>
+    <% end %>
+  </p>
+  <p style="margin-top: 0">
+    <small>
+      <% event.user_events.each do |friend| %>
+        <%= friend.user.name || friend.user.email %>
+        (<%= friend.status %>)
+      <% end %>
+    </small>
+  </p>
 <% end %>
-  <%= link_to 'create new', new_event_path %>
+<%= link_to 'Create new', new_event_path %>
 

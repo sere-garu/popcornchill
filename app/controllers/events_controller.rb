@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event
+    @movies = event_movies(@event)
   end
 
   def new
@@ -17,12 +17,18 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      UserEvent.create(user: current_user, event: @event, status: "admin")
+      UserEvent.create(user: current_user, event: @event, status: 'admin')
+
+      User.where(email: params['emails']).each do |user|
+        UserEvent.create(user: user, event: @event, status: 'pending')
+      end
 
       params[:emails].each do |email|
+        next if User.where(email: email).take
+
         password = SecureRandom.hex(10)
-        user = User.create!(email: email, password: password, password_confirmation: password)
-        UserEvent.create(user: user, event: @event, status: "pending") if user
+        temp_user = User.create!(email: email, password: password, password_confirmation: password)
+        UserEvent.create(user: temp_user, event: @event, status: 'pending') if temp_user
       end
 
       redirect_to root_path
@@ -50,5 +56,15 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :address, :date)
+  end
+
+  def event_movies(event)
+    @movies = []
+    event.users.each do |user|
+      next unless user.user_events.where(event_id: params[:id]).take.status == 'accepted'
+
+      @movies << user.movies
+    end
+    @movies.flatten.uniq
   end
 end
