@@ -36,6 +36,7 @@
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
     <% end %>
+
     <% if event.swiped? %>
       <%= link_to 'Results', event_results_path(event) %>
     <% elsif event.everyone_pending? %>

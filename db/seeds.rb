@@ -126,7 +126,7 @@ damiano = User.create!(email: 'dam@dam.com',
              name: 'Damiano',
              password: '123456',
              phone_number: Faker::PhoneNumber.phone_number,
-             avatar: 'http://res.freestockphotos.biz/pictures/10/10590-an-orange-cat-isolated-on-a-white-background-pv.jpg')
+             avatar: 'http://res.freestockavatars.biz/pictures/10/10590-an-orange-cat-isolated-on-a-white-background-pv.jpg')
 
 puts 'Creating Anders and his wishlist...'
 anders = User.create!(email: 'anders@anders.com',
