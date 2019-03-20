@@ -1,0 +1,11 @@
+<!-- index.html.erb -->
+
+<h1><%= @event.name %></h1>
+
+<% @results.each do |result| %>
+  <p>
+    <%= result.user.name %>
+  | <%= result.movie.trakt_payload['title'] %>
+  | <%= result.preference %>
+  </p>
+<% end %>
