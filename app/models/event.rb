@@ -10,4 +10,8 @@ class Event < ApplicationRecord
   def everyone_pending?
     user_events.map(&:status).uniq.sort == %w[admin pending]
   end
+
+  def user_is_admin?(user)
+    user_events.where(status: :admin).take.user.name == user.name
+  end
 end
