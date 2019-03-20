@@ -26,6 +26,7 @@ class EventsController < ApplicationController
 
       params[:emails].each do |email|
         next if User.where(email: email).take
+        next if email.blank?
 
         password = SecureRandom.hex(10)
         temp_user = User.create!(email: email, password: password, password_confirmation: password)
