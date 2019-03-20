@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   has_many :users, through: :user_events
   has_many :results, dependent: :delete_all
 
-  validates :name, presence: true, length: { maximum: 30 }
+  validates :name, presence: true, length: { maximum: 50 }
   validates :date, presence: true
 
   def swiped?
