@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :users, through: :user_events
   has_many :results, dependent: :delete_all
 
-	validates :name, presence: true, length: { minimum: 2 }
+	validates :name, presence: true, length: { maximum: 30 }
 	validates :date, presence: true
 
   def swiped?
@@ -17,6 +17,6 @@ class Event < ApplicationRecord
 
   # validate that Events have at least two members (admin && invitee)
   def invited?
-		user_events.user_id.count >= 2
+    user_events.user_id.count >= 2
   end
 end
