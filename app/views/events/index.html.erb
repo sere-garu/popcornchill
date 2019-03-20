@@ -33,6 +33,7 @@
                 event_path(event),
                 method: :delete,
                 data: { confirm: "Are you sure?" } %>
+    <%= link_to 'Edit', edit_event_path(event) %>
     <% if event.swiped? %>
       <%= link_to 'Results', event_results_path(event) %>
     <% elsif event.everyone_pending? %>
