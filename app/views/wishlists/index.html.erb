@@ -1,0 +1,14 @@
+<h3>Welcome <%= current_user.name %>, set your watchist:</h3>
+
+<%= form_tag wishlists_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query,
+      params[:query],
+      class: 'form-control',
+      placeholder: 'Find a movie' %>
+  </p>
+<% end %>
+
+<% @movies.each do |movie| %>
+  <p><%= movie.trakt_payload['title'] %></p>
+<% end %>
