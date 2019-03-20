@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
+    @pending_events = current_user.user_events.where(status: 'pending')
     @events = Event.all
   end
 

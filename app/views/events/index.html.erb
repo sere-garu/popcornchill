@@ -1,4 +1,29 @@
 <!-- index.html.erb -->
+<% if @pending_events.any? %>
+  <h1><%= pluralize(@pending_events.count, 'request') %></h1>
+
+  <% @pending_events.each do |pending| %>
+    <% date = pending.event.date.strftime '%A, %e %B' %>
+    <p style="margin-bottom: 0">
+      <%= pending.event.name %> | <%= date %> | <%= pending.event.address %>
+      <%= link_to 'Accept', user_event_path(pending, pending: {
+            status: 'accepted',
+            user_id: current_user,
+            event_id: pending.event.id
+          }), method: :patch %>
+    </p>
+    <p style="margin-top: 0">
+      <small>
+        <% pending.event.user_events.each do |friend| %>
+          <%= friend.user.name || friend.user.email %>
+          (<%= friend.status %>)
+        <% end %>
+      </small>
+    </p>
+  <% end %>
+<% end %>
+
+<h1>Summary</h1>
 
 <% @events.each do |event| %>
   <% date = event.date.strftime '%A, %e %B' %>

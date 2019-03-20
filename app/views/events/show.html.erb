@@ -4,7 +4,7 @@
 
 <% @movies.each do |movie| %>
   <div>
-    <%= link_to 'Me no like this movie', {
+    <%= link_to 'Yep', {
           controller: 'results',
           action: 'create',
           preference: 'no',
@@ -12,7 +12,7 @@
           user_id: current_user,
           event_id: @event.id
         }, method: :post %>
-    <%= link_to 'Me do like this movie', {
+    <%= link_to 'Nope', {
           controller: 'results',
           action: 'create',
           preference: 'yes',
