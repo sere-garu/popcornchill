@@ -17,3 +17,4 @@ class ResultsController < ApplicationController
     params.require(:preference).permit(:preference)
   end
 end
+

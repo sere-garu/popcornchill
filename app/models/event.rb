@@ -22,8 +22,9 @@ class Event < ApplicationRecord
 
   private
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver_now
+  def send_confirm_email
+    EventMailer.confirm_mail(self).deliver_now
+    # EventMailer.invite(self).deliver_now
   end
 
 end

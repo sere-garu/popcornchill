@@ -16,7 +16,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
     if @event.save
       UserEvent.create(user: current_user, event: @event, status: 'admin')
 
@@ -76,5 +75,9 @@ class EventsController < ApplicationController
       @movies << user.movies
     end
     @movies.flatten.uniq
+  end
+
+  def event_params
+    params.require(:event).permit(:preference, :name, :date, :address, :latitude, :longitude)
   end
 end
