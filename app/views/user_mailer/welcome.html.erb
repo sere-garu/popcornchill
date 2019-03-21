@@ -2,10 +2,12 @@
 
 <p>Hello <%= @user.name %>,</p>
 
-<p>Thanks for signing up</p>
+<p>Thank you for signing up! You can now organize events for watching movies or shows with your friends. Finding something to watch has never been easier.</p>
 
-
-
-<p>Thank you for signing up! You can now organize with your friends to watch a movie or show. Simply create your next event <strong><%= link_to 'here', new_event_url %></strong>!</p>
+<p>Simply create your next event <strong><%= link_to 'here', new_event_url %></strong>!</p>
 
 <p>Enjoy!</p>
+
+<%= image_tag "Logo_PopcornChill.png", alt: "Popcorn Chill", width: 200 %>
+
+<%#= link_to image_tag(teddy.photo_url), teddy_path(teddy) %>
