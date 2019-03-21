@@ -145,6 +145,7 @@ oscar = User.create!(email: 'oscar@oscar.com',
 preferences = %w[yep nope]
 User.all.each do |user|
   Movie.all.each do |movie|
+    next if (1..5).include? (1..10).to_a.sample
     user.wishlists.create(movie: movie, preference: preferences.sample)
     # Wishlist.create(user: user, movie: movie, preference: preferences.sample)
   end
