@@ -9,24 +9,18 @@
   </p>
 <% end %>
 
-<h3>Your watchlist</h3>
+<h3>Your watchlist <%= link_to 'Done', root_path %></h3>
 <% @wishlists.each do |wishlist| %>
   <p>
     <%= wishlist.movie.trakt_payload['title'] %>
-    <%#= link_to 'Remove', {
-          controller: 'wishlists',
-          action: 'update',
-          movie_params: {
-            preference: 'nope',
-            movie_id: wishlist.movie.id,
-            user_id: current_user
-          }
-        }, method: :patch %>
+    <%= link_to 'Remove', wishlist, method: :delete %>
   </p>
 <% end %>
 
 <h3>Pick a movie</h3>
+<!-- @movies.pluck(:id) & current_user.wishlists.pluck(:movie_id) -->
 <% @movies.each do |movie| %>
+  <% next if movie.preference?(current_user) %>
   <p>
     <%= movie.trakt_payload['title'] %>
     <%= link_to 'Add', {
