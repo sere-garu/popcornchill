@@ -8,6 +8,11 @@ class Movie < ApplicationRecord
     user.wishlists.pluck(:movie_id).include? id
   end
 
+  def yep?(user)
+    user_wishlist = user.wishlists.where(movie: self)
+    user_wishlist.empty? ? false : user_wishlist.take.preference == 'yep'
+  end
+
   def result?(user)
     # user.user_events
   end

@@ -1,23 +1,24 @@
 class WishlistsController < ApplicationController
   def index
-    @movies = Movie.order(created_at: :desc)
-    @wishlists = Wishlist.where(user_id: current_user).order(created_at: :asc)
+    @movies = Movie.all
+    @wishlists = Wishlist.where(user: current_user, preference: 'yep')
   end
 
   def create
-    @wishlist = current_user.wishlists.new(movie_params)
+    @wishlist = current_user.wishlists.new(wishlist_params)
 
     if @wishlist.save
-      redirect_to wishlists_path
+      flash[:notice] = "#{Wishlist.all.count} results"
     else
-      render :index
+      flash[:notice] = @wishlist.errors.full_messages
     end
+    redirect_to wishlists_path
   end
 
   def destroy
     @wishlist = Wishlist.find(params[:id])
 
-    if @wishlist.delete
+    if @wishlist.destroy
       redirect_to wishlists_path
     else
       render :index
@@ -26,7 +27,7 @@ class WishlistsController < ApplicationController
 
   private
 
-  def movie_params
-    params.require(:movie_params).permit(:movie_id, :preference, :user_id)
+  def wishlist_params
+    params.require(:wishlist).permit(:movie_id, :preference, :user_id)
   end
 end

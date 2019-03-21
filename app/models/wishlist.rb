@@ -7,5 +7,6 @@ class Wishlist < ApplicationRecord
             inclusion: {
               in: %w[yep nope],
               message: "%{value} is not allowed"
-            }, uniqueness: { scope: %i[movie_id user_id] }
+            }
+  validates_uniqueness_of :user_id, scope: :movie_id
 end
