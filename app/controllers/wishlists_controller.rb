@@ -6,6 +6,7 @@ class WishlistsController < ApplicationController
 
   def create
     @wishlist = current_user.wishlists.new(movie_params)
+
     if @wishlist.save
       redirect_to wishlists_path
     else
@@ -15,6 +16,7 @@ class WishlistsController < ApplicationController
 
   def destroy
     @wishlist = Wishlist.find(params[:id])
+
     if @wishlist.delete
       redirect_to wishlists_path
     else

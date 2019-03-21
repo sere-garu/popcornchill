@@ -7,4 +7,8 @@ class Movie < ApplicationRecord
   def preference?(user)
     user.wishlists.pluck(:movie_id).include? id
   end
+
+  def result?(user)
+    # user.user_events
+  end
 end
