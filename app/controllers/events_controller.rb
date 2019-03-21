@@ -59,7 +59,6 @@ class EventsController < ApplicationController
   def event_movies(event)
     @movies = []
     event.users.each do |user|
-      # next unless user.user_events.where(event: event).take.status == 'accepted'
       next if %w[rejected pending].include? user.user_events.where(event: event).take.status
 
       @movies << user.movies
