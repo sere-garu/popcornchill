@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+
   has_many :user_events, dependent: :delete_all
   has_many :users, through: :user_events
   has_many :results, dependent: :delete_all
@@ -18,13 +19,7 @@ class Event < ApplicationRecord
     user_events.where(status: :admin).take.user.name == user.name
   end
 
-  after_create :send_confirm_email
-
-  private
-
   def send_confirm_email
     EventMailer.confirm_mail(self).deliver_now
-    # EventMailer.invite(self).deliver_now
   end
-
 end

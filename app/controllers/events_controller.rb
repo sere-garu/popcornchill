@@ -20,6 +20,8 @@ class EventsController < ApplicationController
       UserEvent.create(user: current_user, event: @event, status: 'admin')
       event_friends(params[:emails], @event)
 
+      @event.send_confirm_email
+
       redirect_to root_path
     else
       render 'new'
