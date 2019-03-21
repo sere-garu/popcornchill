@@ -17,4 +17,13 @@ class Event < ApplicationRecord
   def user_is_admin?(user)
     user_events.where(status: :admin).take.user.name == user.name
   end
+
+  after_create :send_confirm_email
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
+
 end

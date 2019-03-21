@@ -1,0 +1,18 @@
+<style>
+	h3, p {
+		font-family: sans-serif;
+	}
+</style>
+
+<h3>You have been invited by a Friend!</h3>
+
+<p>Hello <%= @user.name %>,</p>
+
+<p>Congratulations, you have been invited by one of your friends over at <strong>Popcorn Chill</strong> to watch a movie or show together.</p>
+
+<p>You can find all your invites <strong><%= link_to 'here', event_url %></strong>!</p>
+
+<p>Thanks,</p>
+<p>Team Popcorn Chill</p>
+
+<%= image_tag "Logo_PopcornChill.png", alt: "Popcorn Chill", width: 200 %>

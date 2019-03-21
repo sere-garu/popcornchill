@@ -1,0 +1,18 @@
+<style>
+	h3, p {
+		font-family: sans-serif;
+	}
+</style>
+
+<h3>Your Event has been sent!</h3>
+
+<p>Hello <%= @user.name %>,</p>
+
+<p>Thank you for creating an event. Rest easy - your guestlist has been notified. Once a guest accepts, then you can start swiping on their movies and shows!</p>
+
+<p>In the meantime, find all your Events <strong><%= link_to 'here', event_url %></strong>!</p>
+
+<p>Thanks,</p>
+<p>Team Popcorn Chill</p>
+
+<%= image_tag "Logo_PopcornChill.png", alt: "Popcorn Chill", width: 200 %>
