@@ -10,6 +10,7 @@
 <% end %>
 
 <h3>Your watchlist <%= link_to 'Done', root_path %></h3>
+
 <% @wishlists.each do |wishlist| %>
   <p>
     <%= wishlist.movie.trakt_payload['title'] %>
