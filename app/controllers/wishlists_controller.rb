@@ -1,7 +1,7 @@
 class WishlistsController < ApplicationController
   def index
-    @movies = Movie.all
-    @wishlists = Wishlist.where(user_id: current_user)
+    @movies = Movie.order(created_at: :desc)
+    @wishlists = Wishlist.where(user_id: current_user).order(created_at: :asc)
   end
 
   def create
@@ -13,8 +13,13 @@ class WishlistsController < ApplicationController
     end
   end
 
-  def update
-    raise
+  def destroy
+    @wishlist = Wishlist.find(params[:id])
+    if @wishlist.delete
+      redirect_to wishlists_path
+    else
+      render :index
+    end
   end
 
   private
