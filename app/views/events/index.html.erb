@@ -1,16 +1,20 @@
-<!-- index.html.erb -->
 <% if @pending_events.any? %>
   <h1><%= pluralize(@pending_events.count, 'invite') %></h1>
 
   <% @pending_events.each do |pending| %>
     <% date = pending.event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
-      <%= pending.event.name %> | <%= date %> | <%= pending.event.address %>
+      <%= link_to 'Refuse', user_event_path(pending, pending: {
+            status: 'rejected',
+            user_id: current_user,
+            event_id: pending.event.id
+          }), method: :patch, class: 'text-danger' %>
       <%= link_to 'Accept', user_event_path(pending, pending: {
             status: 'accepted',
             user_id: current_user,
             event_id: pending.event.id
-          }), method: :patch %>
+          }), method: :patch, class: 'text-success' %>
+      <%= pending.event.name %> | <%= date %> | <%= pending.event.address %>
     </p>
     <p style="margin-top: 0">
       <small>
@@ -26,24 +30,31 @@
 <h1>Summary</h1>
 
 <p><%= link_to 'Create new', new_event_path %></p>
+
 <% @events.each do |event| %>
   <% date = event.date.strftime '%A, %e %B' %>
   <p style="margin-bottom: 0">
-    <%= event.name %> | <%= date %> | <%= event.address %>
     <% if event.user_is_admin?(current_user) %>
+      <%= link_to 'Edit', edit_event_path(event) %>
       <%= link_to 'Delete',
                   event_path(event),
                   method: :delete,
-                  data: { confirm: "Are you sure?" } %>
+                  data: { confirm: "Are you sure?" },
+                  class: 'text-danger' %>
     <% end %>
 
     <% if event.swiped? %>
-      <%= link_to 'Results', event_results_path(event) %>
+      <%= link_to 'Results', event_results_path(event), class: 'text-success' %>
+      <br>
     <% elsif event.everyone_pending? %>
-      Still pending...
+      <span class="text-secondary">Still pending...</span>
+      <br>
     <% else %>
-      <%= link_to 'Swipe', event_path(event) %>
+      <%= link_to 'Swipe', event_path(event), class: 'text-warning' %>
+      <br>
     <% end %>
+
+    <%= event.name %> | <%= date %> | <%= event.address %>
   </p>
   <p style="margin-top: 0">
     <small>
@@ -54,4 +65,3 @@
     </small>
   </p>
 <% end %>
-

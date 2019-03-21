@@ -1,25 +1,27 @@
-<!-- show.html.erb -->
-
 <h1>Movies for <%= @event.name %></h1>
 
 <% @movies.each do |movie| %>
+  <% next if movie.preference? current_user %>
   <div>
-    <%= link_to 'Nope', {
-          controller: 'results',
-          action: 'create',
+    <%= link_to 'Nope', event_results_path(
+          @event,
           preference: 'nope',
           movie_id: movie.id,
           user_id: current_user,
           event_id: @event.id
-        }, method: :post %>
-    <%= movie.trakt_payload['title'] %>
-    <%= link_to 'Yep', {
-          controller: 'results',
-          action: 'create',
-          preference: 'yep',
-          movie_id: movie.id,
-          user_id: current_user,
-          event_id: @event.id
-        }, method: :post %>
+        ), method: :post, class: 'text-danger' %>
+
+    <%# if movie.result? current_user %>
+      <%= movie.trakt_payload['title'] %>
+    <%# else %>
+    <%# end %>
+
+    <%= link_to 'Yep', event_results_path(
+      @event,
+      preference: 'yep',
+      movie_id: movie.id,
+      user_id: current_user,
+      event_id: @event.id
+    ), method: :post, class: 'text-success' %>
   </div>
 <% end %>
