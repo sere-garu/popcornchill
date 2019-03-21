@@ -34,6 +34,10 @@
 <% @events.each do |event| %>
   <% date = event.date.strftime '%A, %e %B' %>
   <p style="margin-bottom: 0">
+    <% if event.results? %>
+      <%= link_to 'Results', event_results_path(event), class: 'text-success' %>
+    <% end %>
+
     <% if event.user_is_admin?(current_user) %>
       <%= link_to 'Edit', edit_event_path(event) %>
       <%= link_to 'Delete',
@@ -43,11 +47,10 @@
                   class: 'text-danger' %>
     <% end %>
 
-    <% if event.swiped? %>
-      <%= link_to 'Results', event_results_path(event), class: 'text-success' %>
-      <br>
-    <% elsif event.everyone_pending? %>
-      <span class="text-secondary">Still pending...</span>
+    <% if event.everyone_swiped? %>
+      <span class="text-secondary">
+        <%= (event.date.to_date - Date.today.to_date).to_i %> days left
+      </span>
       <br>
     <% else %>
       <%= link_to 'Swipe', event_path(event), class: 'text-warning' %>

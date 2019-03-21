@@ -11,10 +11,8 @@
           event_id: @event.id
         ), method: :post, class: 'text-danger' %>
 
-    <%# if movie.result? current_user %>
-      <%= movie.trakt_payload['title'] %>
-    <%# else %>
-    <%# end %>
+    <%#= movie.trakt_payload['title'] unless movie.result? current_user %>
+    <%= movie.trakt_payload['title'] %>
 
     <%= link_to 'Yep', event_results_path(
       @event,
