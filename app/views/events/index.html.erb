@@ -29,7 +29,7 @@
     </p>
   <% end %>
 <% else %>
-  <h3 style="text-align: center">No pending invitations! ✅</h3>
+  <h3 style="text-align: center">No pending invitations!</h3>
 <% end %>
 
 <% if @admin_events.any? %>
@@ -43,7 +43,17 @@
           event_results_path(admin.event),
           class: 'text-success' %>
       <% end %>
-      <%= link_to 'Swipe', event_path(admin.event), class: 'text-warning' %>
+
+      <% if admin.event.everyone_swiped? %>
+        <span class="text-secondary">
+          <%= (admin.event.date.to_date - Date.today.to_date).to_i %> days left
+        </span>
+      <% elsif Event.endpoint?(admin.event, Movie.in_common(admin.event)) %>
+
+      <% elsif admin.event.someone_accepted? %>
+        <%= link_to 'Swipe', event_path(admin.event), class: 'text-warning' %>
+      <% end %>
+
       <%= link_to 'Edit', edit_event_path(admin.event) %>
       <%= link_to 'Delete',
         event_path(admin.event),
@@ -82,13 +92,11 @@
         <span class="text-secondary">
           <%= (accepted.event.date.to_date - Date.today.to_date).to_i %> days left
         </span>
+      <% elsif Event.endpoint?(accepted.event, Movie.in_common(accepted.event)) %>
+
       <% elsif accepted.event.someone_accepted? %>
         <%= link_to 'Swipe', event_path(accepted.event), class: 'text-warning' %>
       <% end %>
-
-      <%# if accepted.event.someone_accepted? %>
-        <%#= link_to 'Swipe', event_path(accepted.event), class: 'text-warning' %>
-      <%# end %>
 
       <br>
       <%= accepted.event.name %> | <%= date %> | <%= accepted.event.address %>
@@ -103,5 +111,5 @@
     </p>
   <% end %>
 <% else %>
-  <h3 style="text-align: center">No accepted events ☹️</h3>
+  <h3 style="text-align: center">No accepted events</h3>
 <% end %>
