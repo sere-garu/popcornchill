@@ -24,7 +24,7 @@ class EventsController < ApplicationController
       flash[:notice] = "#{Event.all.count} events"
       redirect_to root_path
     else
-      flash[:notice] = @wishlist.errors.full_messages
+      flash[:notice] = @event.errors.full_messages
       render 'new'
     end
   end
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
       flash[:notice] = "#{Event.all.count} events"
       redirect_to root_path
     else
-      flash[:notice] = @wishlist.errors.full_messages
+      flash[:notice] = @event.errors.full_messages
       render 'edit'
     end
   end

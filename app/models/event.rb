@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :date, presence: true
 
+
   def self.endpoint?(event, movies)
     event.results.count == movies.count**2
   end
