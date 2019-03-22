@@ -1,8 +1,8 @@
 <h3>Movies for <%= @event.name %></h3>
 
-<% unless @movies.nil? %>
+<% if @movies.any? %>
   <% @movies.each do |movie| %>
-    <% next if movie.preference?(current_user) %>
+    <% next if @event.user_already_swiped(current_user, movie) %>
     <div>
       <%= link_to 'Nope', event_results_path(
         @event,
@@ -13,7 +13,8 @@
       ), method: :post, class: 'text-danger' %>
       <%#= render 'swipe', text: 'nope', event: @event, movie: movie, color: 'text-danger' %>
 
-      <%#= movie.trakt_payload['title'] unless movie.result? current_user %>
+      <%= movie.id %>
+
       <%= movie.trakt_payload['title'] %>
 
       <%= link_to 'Yep', event_results_path(
@@ -24,5 +25,20 @@
         event_id: @event.id
       ), method: :post, class: 'text-success' %>
     </div>
+  <% end %>
+  <% if Event.endpoint?(@event, @movies) %>
+    <h3 style="text-align: center">✅ Nothing to swipe!</h3>
+  <% end %>
+<% else %>
+  <h3 style="text-align: center">No matches!</h3>
+<% end %>
+
+<% if @event.everyone_swiped?(@movies) %>
+  <% raise %>
+  Everyone swiped, results:
+  <br>
+  <% @event.results.prefered.each do |result| %>
+  movie: <%= result.movie.trakt_payload["title"] %>
+  <br>
   <% end %>
 <% end %>

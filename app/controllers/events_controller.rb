@@ -2,13 +2,13 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @pending_events = current_user.user_events.where(status: 'pending').reverse
-    @admin_events = current_user.user_events.where(status: 'admin').reverse
-    @accepted_events = current_user.user_events.where(status: 'accepted').reverse
+    @pending_events = user_events_custom_filter('pending')
+    @admin_events = user_events_custom_filter('admin')
+    @accepted_events = user_events_custom_filter('accepted')
   end
 
   def show
-    @movies = event_movies(@event)
+    @movies = Movie.in_common(@event)
   end
 
   def new
@@ -52,22 +52,16 @@ class EventsController < ApplicationController
 
   private
 
+  def user_events_custom_filter(preference)
+    current_user.user_events.where(status: preference).map(&:event).reverse
+  end
+
   def set_event
     @event = Event.find(params[:id])
   end
 
   def event_params
     params.require(:event).permit(:name, :address, :date)
-  end
-
-  def event_movies(event)
-    @movies = []
-    event.users.each do |user|
-      next if %w[rejected pending].include? user.user_events.where(event: event).take.status
-
-      @movies << user.movies
-    end
-    @movies.flatten.uniq
   end
 
   def event_friends(emails, event)

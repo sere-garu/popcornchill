@@ -1,7 +1,7 @@
 class WishlistsController < ApplicationController
   def index
-    @movies = Movie.all
     @wishlists = Wishlist.where(user: current_user, preference: 'yep')
+    @movies_payload = Movie.all
   end
 
   def create
