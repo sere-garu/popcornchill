@@ -40,18 +40,29 @@ h2 {
 .form-inputs input:required {
   border-left-color: $green;
   border-left-width: 2.5px;
+  width: 80%;
 }
-.form-inputs input:invalid {
-  border-width: 0px;
+
+.form-inputs input:optional {
   border-left-color: $red;
   border-left-width: 2.5px;
+  width: 80%;
 }
+
+.form-inputs input:invalid, .form-control.is-invalid {
+  border-left-color: $red;
+  border-left-width: 2.5px;
+  width: 80%;
+}
+
+.form-inputs input:valid, .form-control.is-valid, .form-inputs input:invalid, .form-control.is-invalid {
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+ }
 
 .cancel_acct {
 	color: gray;
 	align: right;
 	padding-right: 15px;
 }
-// add hover action
-
-
