@@ -1,0 +1,33 @@
+h2 {
+	text-align: center;
+}
+
+
+.signup_container {
+	margin: auto;
+	width: 30vw;
+	padding: 20px 30px 20px 30px;
+	color: $black;
+	// background: $senape;
+}
+
+.signup {
+	margin: auto;
+	width: 27vw;
+	padding: 20px 30px 20px 30px;
+	// margin: 150px 0px 150px 0px; 
+	background: #F4F4F4;
+	border: 1px solid rgba(0,0,0,0.125);
+  border-radius: 0.25rem;
+
+}
+
+.button_pc {
+	margin: auto;
+	color: green;
+	background: #FCBA04;
+	width: 12vw;
+  border-radius: 20px;
+	text-align: center;
+
+}
