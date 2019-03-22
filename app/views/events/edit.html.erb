@@ -1,36 +1,44 @@
 <!-- edit.html.erb
  -->
-<%= simple_form_for @event do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name,
-                required: true,
-                autofocus: true %>
-    <%= f.input :address,
-                required: true,
-                as: :search,
-                placeholder: 'Where is your movie night?' %>
-    <%= f.input :date,
-                required: true %>
-  </div>
+<div class="signup_container">
+  <h2>Edit your Event</h2>
 
-  <div class="form-group">
-    <label class="form-control-label">Add friends</label>
-    <div class="d-flex flex-row justify-content-between align-items-center">
-      <input type="email" name="emails[]"
-             class="form-control mx-1"
-             placeholder="friend@email.com">
-      <input type="email" name="emails[]"
-             class="form-control mx-1"
-             placeholder="friend@email.com">
-      <input type="email" name="emails[]"
-             class="form-control mx-1"
-             placeholder="friend@email.com">
+  <%= simple_form_for @event do |f| %>
+    <%= f.error_notification %>
+    <div class="signup">
+      <div class="signup_fields">
+        <div class="form-inputs">
+          <%= f.input :name,
+                      required: true,
+                      autofocus: true %>
+          <%= f.input :address,
+                      required: true,
+                      as: :search,
+                      placeholder: 'Where is your movie night?' %>
+          <%= f.input :date,
+                      required: true %>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label">Add friends</label>
+          <div class="d-flex flex-row justify-content-between align-items-center">
+            <input type="email" name="emails[]"
+                   class="form-control mx-1"
+                   placeholder="friend@email.com">
+            <input type="email" name="emails[]"
+                   class="form-control mx-1"
+                   placeholder="friend@email.com">
+            <input type="email" name="emails[]"
+                   class="form-control mx-1"
+                   placeholder="friend@email.com">
+          </div>
+        </div>
+
+        <div>
+          <%= f.button :submit, "Edit event", class: "button_pc" %>
+        </div>
+      <% end %>
+      </div>
     </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Edit event", class: "btn-primary" %>
-  </div>
-<% end %>
+</div>
