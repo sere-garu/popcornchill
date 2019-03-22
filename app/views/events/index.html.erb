@@ -1,20 +1,23 @@
 
 <% if @pending_events.any? %>
-  <h1><%= pluralize(@pending_events.count, 'invite') %></h1>
+  <h3><%= pluralize(@pending_events.count, 'invite') %></h3>
 
   <% @pending_events.each do |pending| %>
     <% date = pending.event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
-      <%= link_to 'Refuse', user_event_path(pending, pending: {
-            status: 'rejected',
-            user_id: current_user,
-            event_id: pending.event.id
-          }), method: :patch, class: 'text-danger' %>
+      <%= link_to 'Reject', user_event_path(pending, pending: {
+        status: 'rejected',
+        user_id: current_user,
+        event_id: pending.event.id
+      }), method: :patch, class: 'text-danger' %>
       <%= link_to 'Accept', user_event_path(pending, pending: {
-            status: 'accepted',
-            user_id: current_user,
-            event_id: pending.event.id
-          }), method: :patch, class: 'text-success' %>
+        status: 'accepted',
+        user_id: current_user,
+        event_id: pending.event.id
+      }), method: :patch, class: 'text-success' %>
+      <%#= render 'link_to', text: 'reject', object: pending, color: 'text-danger' %>
+      <%#= render 'link_to', text: 'accept', object: pending, color: 'text-succes' %>
+      <br>
       <%= pending.event.name %> | <%= date %> | <%= pending.event.address %>
     </p>
     <p style="margin-top: 0">
@@ -28,41 +31,71 @@
   <% end %>
 <% end %>
 
-<h1>Summary</h1>
+<% if @admin_events.any? %>
+  <h3>Your events</h3>
 
-<p><%= link_to 'Create new', new_event_path %></p>
-
-<% @events.each do |event| %>
-  <% date = event.date.strftime '%A, %e %B' %>
-  <p style="margin-bottom: 0">
-    <% if event.user_is_admin?(current_user) %>
-      <%= link_to 'Edit', edit_event_path(event) %>
-      <%= link_to 'Delete',
-                  event_path(event),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" },
-                  class: 'text-danger' %>
-    <% end %>
-
-    <% if event.swiped? %>
-      <%= link_to 'Results', event_results_path(event), class: 'text-success' %>
-      <br>
-    <% elsif event.everyone_pending? %>
-      <span class="text-secondary">Still pending...</span>
-      <br>
-    <% else %>
-      <%= link_to 'Swipe', event_path(event), class: 'text-warning' %>
-      <br>
-    <% end %>
-
-    <%= event.name %> | <%= date %> | <%= event.address %>
-  </p>
-  <p style="margin-top: 0">
-    <small>
-      <% event.user_events.each do |friend| %>
-        <%= friend.user.name || friend.user.email %>
-        (<%= friend.status %>)
+  <% @admin_events.each do |admin| %>
+    <% date = admin.event.date.strftime '%A, %e %B' %>
+    <p style="margin-bottom: 0">
+      <% if admin.event.results? %>
+        <%= link_to 'Results',
+          event_results_path(admin.event),
+          class: 'text-success' %>
       <% end %>
-    </small>
-  </p>
+      <%= link_to 'Edit', edit_event_path(admin.event) %>
+      <%= link_to 'Delete',
+        event_path(admin.event),
+        method: :delete,
+        data: { confirm: "Are you sure?" },
+        class: 'text-danger' %>
+      <br>
+      <%= admin.event.name %> | <%= date %> | <%= admin.event.address %>
+    </p>
+    <p style="margin-top: 0">
+      <small>
+        <% admin.event.user_events.each do |friend| %>
+          <%= friend.user.name || friend.user.email %>
+          (<%= friend.status %>)
+        <% end %>
+      </small>
+    </p>
+  <% end %>
+<% end %>
+
+<% if @accepted_events.any? %>
+  <h3>Accepted events</h3>
+
+  <% @accepted_events.each do |accepted| %>
+    <% date = accepted.event.date.strftime '%A, %e %B' %>
+    <p style="margin-bottom: 0">
+      <% if accepted.event.results? %>
+        <%= link_to 'Results',
+          event_results_path(accepted.event),
+          class: 'text-success' %>
+      <% end %>
+
+      <% if accepted.event.everyone_swiped? %>
+        <span class="text-secondary">
+          <%= (accepted.event.date.to_date - Date.today.to_date).to_i %> days left
+        </span>
+      <% elsif accepted.event.someone_accepted? %>
+        <%= link_to 'Swipe', event_path(accepted.event), class: 'text-warning' %>
+      <% end %>
+
+      <%# if accepted.event.someone_accepted? %>
+        <%#= link_to 'Swipe', event_path(accepted.event), class: 'text-warning' %>
+      <%# end %>
+
+      <br>
+      <%= accepted.event.name %> | <%= date %> | <%= accepted.event.address %>
+    </p>
+    <p style="margin-top: 0">
+      <small>
+        <% accepted.event.user_events.each do |friend| %>
+          <%= friend.user.name || friend.user.email %>
+          (<%= friend.status %>)
+        <% end %>
+      </small>
+    </p>
+  <% end %>
 <% end %>

@@ -1,11 +1,11 @@
 class ResultsController < ApplicationController
-  before_action :set_event, only: %i[index create]
-
   def index
-    @results = @event.results.order(preference: :desc)
+    @event = Event.find(params[:event_id])
+    @results = @event.results.reject { |r| r.preference == 'nope' }
   end
 
   def create
+    @event = Event.find(params[:event_id])
     @result = @event.results.new(result_params)
     if @result.save
       flash[:notice] = "#{Result.all.count} results"
@@ -17,9 +17,7 @@ class ResultsController < ApplicationController
 
   private
 
-  def set_event
-    @event = Event.find(params[:event_id])
-  end
+  def set_event; end
 
   def result_params
     params.permit(:preference, :movie_id, :user_id, :event_id)

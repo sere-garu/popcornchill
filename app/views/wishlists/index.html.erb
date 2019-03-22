@@ -10,27 +10,45 @@
 <% end %>
 
 <h3>Your watchlist <%= link_to 'Done', root_path %></h3>
-<% @wishlists.each do |wishlist| %>
-  <p>
-    <%= wishlist.movie.trakt_payload['title'] %>
-    <%= link_to 'Remove', wishlist, method: :delete %>
-  </p>
+
+<% unless @wishlists.nil? %>
+  <% @wishlists.each do |wishlist| %>
+    <p>
+      <%= wishlist.movie.id %>
+      <%= wishlist.movie.trakt_payload['title'] %>
+      <%= link_to 'Remove',
+        wishlist,
+        method: :delete,
+        class: 'text-danger' %>
+    </p>
+  <% end %>
 <% end %>
 
 <h3>Pick a movie</h3>
-<!-- @movies.pluck(:id) & current_user.wishlists.pluck(:movie_id) -->
-<% @movies.each do |movie| %>
-  <% next if movie.preference?(current_user) %>
-  <p>
-    <%= movie.trakt_payload['title'] %>
-    <%= link_to 'Add', {
-          controller: 'wishlists',
-          action: 'create',
-          movie_params: {
-            preference: 'yep',
-            movie_id: movie.id,
-            user_id: current_user
-          }
-        }, method: :post %>
-  </p>
+
+<% unless @movies.nil? %>
+  <% @movies.each do |movie| %>
+    <p>
+      <% if current_user.wishlists.where(movie: movie).empty? %>
+        <%= movie.trakt_payload['title'] %>
+        <%= render 'link_to_create',
+          text: 'yep',
+          movie: movie,
+          color: 'text-success' %>
+        <%= render 'link_to_create',
+          text: 'nope',
+          movie: movie,
+          color: 'text-danger' %>
+      <% else %>
+        <span class="text-secondary" style="opacity: .3">
+          <% next if current_user.wishlists.where(movie: movie).take.preference == 'yep' %>
+          <%= movie.trakt_payload['title'] %>
+          <%= link_to 'Revert',
+            Wishlist.where(movie: movie, user: current_user).take,
+            method: :delete,
+            class: 'text-danger' %>
+        </span>
+      <% end %>
+    </p>
+  <% end %>
 <% end %>

@@ -6,15 +6,28 @@ class Event < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :date, presence: true
 
-  def swiped?
-    users.count == results.map(&:user).uniq.count
+  def results?
+    # raise
+    results.map(&:user).uniq.count.positive?
   end
 
   def everyone_pending?
     user_events.map(&:status).uniq.sort == %w[admin pending]
   end
 
-  def user_is_admin?(user)
+  def someone_accepted?
+    user_events.where(status: 'accepted').any?
+  end
+
+  # def new_movies?
+  #   user_events.where(status: 'accepted').take.nil?
+  # end
+
+  def everyone_swiped?
+    users.count == results.map(&:user).uniq.count
+  end
+
+  def admin?(user)
     user_events.where(status: :admin).take.user.name == user.name
   end
 end

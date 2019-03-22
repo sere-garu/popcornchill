@@ -9,4 +9,5 @@ class Result < ApplicationRecord
               in: %w[yep nope],
               message: "%{value} is not allowed"
             }, uniqueness: { scope: %i[movie_id user_id event_id] }
+  # validates_uniqueness_of :user_id, scope: %i[movie_id event_id]
 end
