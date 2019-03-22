@@ -22,8 +22,8 @@ class Event < ApplicationRecord
     user_events.where(status: 'accepted').any?
   end
 
-  def everyone_swiped?
-    users.count == results.map(&:user).uniq.count
+  def everyone_swiped?(watchlist)
+    users.take(users.length).length * watchlist.size == results.map(&:user).count
   end
 
   def admin?(user)

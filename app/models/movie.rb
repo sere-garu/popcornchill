@@ -18,7 +18,7 @@ class Movie < ApplicationRecord
 
     duplicates = uniq_movies.select { |id| uniq_movies.count(id) > 1 }
 
-    self.where(id: duplicates.uniq)
+    where(id: duplicates.uniq)
   end
 
   def preference?(user)

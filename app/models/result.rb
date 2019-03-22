@@ -11,5 +11,5 @@ class Result < ApplicationRecord
             }, uniqueness: { scope: %i[movie_id user_id event_id] }
   # validates_uniqueness_of :user_id, scope: %i[movie_id event_id]
 
-  scope :prefered, -> { self.select("DISTINCT ON (movie_id) movie_id, user_id, id, preference").where(preference: "yep") }
+  scope :prefered, -> { select("DISTINCT ON (movie_id) movie_id, user_id, id, preference").where(preference: "yep") }
 end
