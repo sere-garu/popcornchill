@@ -1,4 +1,3 @@
-
 <% if @pending_events.any? %>
   <h3><%= pluralize(@pending_events.count, 'invite') %></h3>
 
@@ -98,4 +97,34 @@
       </small>
     </p>
   <% end %>
+<% end %>
+
+<% Event.all.each do |event| %>
+  <div class="card-event">
+      <h1 class="event-title"><%= event.name %></h1>
+      <h1 class="event-address"><%= event.address %></h1>
+      <h1 class="event-date"><%= (event.date.to_date - Date.today.to_date).to_i %> days left </h1>
+    <div class="event-guests">
+      <% event.user_events.each do |friend| %>
+    <div class="avatar avatar-circle">
+      <div class="initials"><%= friend.user.name[0] %></div>
+    </div>
+      <% end %>
+      </div>
+    <div class="card-event-infos">
+      <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dxl0m2akr/image/upload/v1553254346/more_2.png" />
+      <div class="dropdown-menu">
+        <%= link_to 'Edit', edit_event_path(event), class: "dropdown-item" %>
+        <%= link_to 'Delete',
+        event_path(event),
+        method: :delete,
+        class: 'dropdown-item'%>
+      </div >
+      <% if event.results? %>
+        <%= link_to 'Results',
+          event_results_path(event),
+          class: 'text-success' %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
