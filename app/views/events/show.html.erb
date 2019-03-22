@@ -2,6 +2,7 @@
 
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
+    <p class="text-secondary" style="opacity: .3"><%= movie.trakt_payload['title'] %></p>
     <% next if @event.user_already_swiped(current_user, movie) %>
     <div>
       <%= link_to 'Nope', event_results_path(
@@ -12,6 +13,8 @@
         event_id: @event.id
       ), method: :post, class: 'text-danger' %>
       <%#= render 'swipe', text: 'nope', event: @event, movie: movie, color: 'text-danger' %>
+
+      <%= movie.id %>
 
       <%= movie.trakt_payload['title'] %>
 

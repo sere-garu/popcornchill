@@ -9,13 +9,15 @@
   </p>
 <% end %>
 
-<h3>Your watchlist <%= link_to 'Done', root_path %></h3>
+<h3>Your watchlist <small><%= link_to 'Done', root_path %></small></h3>
 
 <% unless @wishlists.nil? %>
   <% @wishlists.each do |wishlist| %>
     <p>
       <%= wishlist.movie.id %>
+
       <%= wishlist.movie.trakt_payload['title'] %>
+
       <%= link_to 'Remove',
         wishlist,
         method: :delete,
@@ -26,23 +28,32 @@
 
 <h3>Pick a movie</h3>
 
-<% unless @movies.nil? %>
-  <% @movies.each do |movie| %>
+<% unless @movies_payload.nil? %>
+  <% @movies_payload.each do |movie| %>
     <p>
       <% if current_user.wishlists.where(movie: movie).empty? %>
+
+        <%= movie.id %>
+
         <%= movie.trakt_payload['title'] %>
+
         <%= render 'link_to_create',
           text: 'yep',
           movie: movie,
           color: 'text-success' %>
+
         <%= render 'link_to_create',
           text: 'nope',
           movie: movie,
           color: 'text-danger' %>
+
       <% else %>
+
         <span class="text-secondary" style="opacity: .3">
           <% next if current_user.wishlists.where(movie: movie).take.preference == 'yep' %>
+
           <%= movie.trakt_payload['title'] %>
+
           <%= link_to 'Revert',
             Wishlist.where(movie: movie, user: current_user).take,
             method: :delete,

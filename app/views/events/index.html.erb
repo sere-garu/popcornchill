@@ -4,11 +4,13 @@
   <% @pending_events.each do |pending| %>
     <% date = pending.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
+
       <%= link_to 'Reject', user_event_path(pending, pending: {
         status: 'rejected',
         user_id: current_user,
         event_id: pending.id
       }), method: :patch, class: 'text-danger' %>
+
       <%= link_to 'Accept', user_event_path(pending, pending: {
         status: 'accepted',
         user_id: current_user,

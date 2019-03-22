@@ -2,9 +2,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @pending_events = current_user.user_events.where(status: 'pending').map(&:event).reverse
-    @admin_events = current_user.user_events.where(status: 'admin').map(&:event).reverse
-    @accepted_events = current_user.user_events.where(status: 'accepted').map(&:event).reverse
+    @pending_events = user_events_custom_filter('pending')
+    @admin_events = user_events_custom_filter('admin')
+    @accepted_events = user_events_custom_filter('accepted')
   end
 
   def show
@@ -51,6 +51,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def user_events_custom_filter(preference)
+    current_user.user_events.where(status: preference).map(&:event).reverse
+  end
 
   def set_event
     @event = Event.find(params[:id])
