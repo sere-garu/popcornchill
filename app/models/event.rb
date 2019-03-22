@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   validates :date, presence: true
 
   def results?
+    # raise
     results.map(&:user).uniq.count.positive?
   end
 
@@ -14,11 +15,19 @@ class Event < ApplicationRecord
     user_events.map(&:status).uniq.sort == %w[admin pending]
   end
 
+  def someone_accepted?
+    user_events.where(status: 'accepted').any?
+  end
+
+  # def new_movies?
+  #   user_events.where(status: 'accepted').take.nil?
+  # end
+
   def everyone_swiped?
     users.count == results.map(&:user).uniq.count
   end
 
-  def user_is_admin?(user)
+  def admin?(user)
     user_events.where(status: :admin).take.user.name == user.name
   end
 end

@@ -3,7 +3,8 @@ class EventsController < ApplicationController
 
   def index
     @pending_events = current_user.user_events.where(status: 'pending').reverse
-    @events = Event.all.reverse
+    @admin_events = current_user.user_events.where(status: 'admin').reverse
+    @accepted_events = current_user.user_events.where(status: 'accepted').reverse
   end
 
   def show

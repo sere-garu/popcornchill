@@ -15,7 +15,10 @@
   <% @wishlists.each do |wishlist| %>
     <p>
       <%= wishlist.movie.trakt_payload['title'] %>
-      <%= link_to 'Remove', wishlist, method: :delete, class: 'text-danger' %>
+      <%= link_to 'Remove',
+        wishlist,
+        method: :delete,
+        class: 'text-danger' %>
     </p>
   <% end %>
 <% end %>
@@ -39,7 +42,10 @@
         <span class="text-secondary" style="opacity: .3">
           <% next if current_user.wishlists.where(movie: movie).take.preference == 'yep' %>
           <%= movie.trakt_payload['title'] %>
-          <%= link_to 'Revert', Wishlist.where(movie: movie, user: current_user).take, method: :delete, class: 'text-danger' %>
+          <%= link_to 'Revert',
+            Wishlist.where(movie: movie, user: current_user).take,
+            method: :delete,
+            class: 'text-danger' %>
         </span>
       <% end %>
     </p>

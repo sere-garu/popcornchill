@@ -8,7 +8,7 @@ class WishlistsController < ApplicationController
     @wishlist = current_user.wishlists.new(wishlist_params)
 
     if @wishlist.save
-      flash[:notice] = "#{Wishlist.all.count} results"
+      flash[:notice] = "#{Wishlist.all.count} wishlists"
     else
       flash[:notice] = @wishlist.errors.full_messages
     end
@@ -19,15 +19,16 @@ class WishlistsController < ApplicationController
     @wishlist = Wishlist.find(params[:id])
 
     if @wishlist.destroy
-      redirect_to wishlists_path
+      flash[:notice] = "#{Wishlist.all.count} wishlists"
     else
-      render :index
+      flash[:notice] = @wishlist.errors.full_messages
     end
+    redirect_to wishlists_path
   end
 
   private
 
   def wishlist_params
-    params.require(:wishlist).permit(:movie_id, :preference, :user_id)
+    params.require(:wishlist).permit(:user_id, :movie_id, :preference)
   end
 end
