@@ -34,7 +34,6 @@
 <% end %>
 
 <% if @event.everyone_swiped?(@movies) %>
-  <% raise %>
   Everyone swiped, results:
   <br>
   <% @event.results.prefered.each do |result| %>

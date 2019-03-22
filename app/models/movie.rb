@@ -10,8 +10,8 @@ class Movie < ApplicationRecord
     event.users.each do |user|
       next if %w[rejected pending].include? user.user_events.where(event: event).take.status
 
-      movie_ids_for_user = user.wishlists.where(preference: "yep").pluck(:movie_id)
-      # movie_ids_for_user = user.movies.pluck(:id)
+      # movie_ids_for_user = user.wishlists.where(preference: "yep").pluck(:movie_id)
+      movie_ids_for_user = user.movies.pluck(:id)
 
       movies << movie_ids_for_user
     end
