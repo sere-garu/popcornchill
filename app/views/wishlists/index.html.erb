@@ -14,6 +14,7 @@
 <% unless @wishlists.nil? %>
   <% @wishlists.each do |wishlist| %>
     <p>
+      <%= wishlist.movie.id %>
       <%= wishlist.movie.trakt_payload['title'] %>
       <%= link_to 'Remove',
         wishlist,

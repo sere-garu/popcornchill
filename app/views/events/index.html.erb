@@ -4,7 +4,7 @@
   <% @pending_events.each do |pending| %>
     <% date = pending.event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
-      <%= link_to 'Refuse', user_event_path(pending, pending: {
+      <%= link_to 'Reject', user_event_path(pending, pending: {
         status: 'rejected',
         user_id: current_user,
         event_id: pending.event.id
@@ -14,6 +14,8 @@
         user_id: current_user,
         event_id: pending.event.id
       }), method: :patch, class: 'text-success' %>
+      <%#= render 'link_to', text: 'reject', object: pending, color: 'text-danger' %>
+      <%#= render 'link_to', text: 'accept', object: pending, color: 'text-succes' %>
       <br>
       <%= pending.event.name %> | <%= date %> | <%= pending.event.address %>
     </p>
@@ -29,11 +31,16 @@
 <% end %>
 
 <% if @admin_events.any? %>
-  <h3>Your events <%= link_to 'Create new', new_event_path %></h3>
+  <h3>Your events</h3>
 
   <% @admin_events.each do |admin| %>
     <% date = admin.event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
+      <% if admin.event.results? %>
+        <%= link_to 'Results',
+          event_results_path(admin.event),
+          class: 'text-success' %>
+      <% end %>
       <%= link_to 'Edit', edit_event_path(admin.event) %>
       <%= link_to 'Delete',
         event_path(admin.event),
