@@ -7,31 +7,27 @@
     <!-- add icons for email and name -->
 
     <div class="signup">
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :name,
-                    required: true,
-                    input_html: { autocomplete: "name" } %>
-        <%= f.input :password,
-                    required: true,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    input_html: { autocomplete: "new-password" } %>
+      <div class="signup_fields">
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" } %>
+          <%= f.input :name,
+                      required: true,
+                      input_html: { autocomplete: "name" } %>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
       </div>
-      
-      <!-- OLD SIGNUP BUTTON -->
-      <!-- <div class="form-actions">
-        <%#= f.button :submit, "Sign up" %>
-      </div> -->
-      
-      <div class="button_pc">
-        <%= f.button :submit, "Create an account" %>
-      </div>   
+        <div class="button_pc">
+          <%= f.button :submit, "Create an account" %>
+        </div>
       <%= render "devise/shared/links" %>
     </div>
   <% end %>
