@@ -2,7 +2,6 @@ h2 {
 	text-align: center;
 }
 
-
 .signup_container {
 	margin: auto;
 	width: 30vw;
@@ -13,21 +12,36 @@ h2 {
 
 .signup {
 	margin: auto;
+	margin-top: 55px;
+	margin-bottom: 80px;
 	width: 27vw;
 	padding: 20px 30px 20px 30px;
-	// margin: 150px 0px 150px 0px; 
 	background: #F4F4F4;
 	border: 1px solid rgba(0,0,0,0.125);
   border-radius: 0.25rem;
-
 }
 
 .button_pc {
 	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
 	color: green;
 	background: #FCBA04;
 	width: 12vw;
   border-radius: 20px;
 	text-align: center;
-
 }
+
+.form-inputs input:required {
+  border-left-color: $green;
+  border-left-width: 2.5px;
+}
+.form-inputs input:invalid {
+  border-width: 0px;
+  border-left-color: $red;
+  border-left-width: 2.5px;
+}
+
+// add hover action
+
+
