@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_142906) do
   end
 
   create_table "wishlists", force: :cascade do |t|
-    t.string "preference", default: "nope"
+    t.string "preference"
     t.bigint "user_id"
     t.bigint "movie_id"
     t.datetime "created_at", null: false

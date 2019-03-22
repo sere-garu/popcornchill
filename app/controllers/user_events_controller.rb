@@ -2,7 +2,7 @@ class UserEventsController < ApplicationController
   def update
     user_event = UserEvent.find(params[:id])
     user_event.update(user_event_params)
-    common_wishlists(user_event.event) if user_event.status == 'accepted'
+    # common_wishlists(user_event.event) if user_event.status == 'accepted'
     redirect_to root_path
   end
 

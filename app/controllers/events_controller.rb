@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @movies = event_movies(@event)
+    @movies = Movie.in_common(@event)
   end
 
   def new
@@ -58,16 +58,6 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :address, :date)
-  end
-
-  def event_movies(event)
-    @movies = []
-    event.users.each do |user|
-      next if %w[rejected pending].include? user.user_events.where(event: event).take.status
-
-      @movies << user.movies
-    end
-    @movies.flatten.uniq
   end
 
   def event_friends(emails, event)

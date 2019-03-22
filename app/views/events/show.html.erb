@@ -2,7 +2,7 @@
 
 <% unless @movies.nil? %>
   <% @movies.each do |movie| %>
-    <% next if movie.preference?(current_user) %>
+    <% next if @event.user_already_swiped(current_user, movie) %>
     <div>
       <%= link_to 'Nope', event_results_path(
         @event,
@@ -24,5 +24,18 @@
         event_id: @event.id
       ), method: :post, class: 'text-success' %>
     </div>
+  <% end %>
+<% end %>
+
+
+<% if @event.everyone_swiped? %>
+Everyone swiped, results:
+
+<br>
+
+  <% @event.results.prefered.each do |result| %>
+  movie: <%= result.movie.trakt_payload["title"] %>
+
+  <br>
   <% end %>
 <% end %>
