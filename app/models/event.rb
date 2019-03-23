@@ -8,14 +8,14 @@ class Event < ApplicationRecord
             length: { maximum: 50 }
 
   validates :date,
-            presence: true,
-            uniqueness: {
-              scope: :address,
-              message: 'one event per date/address pair allowed'
-            }
+            presence: true
+            # uniqueness: {
+            #   scope: :address,
+            #   message: 'one event per date/address pair allowed'
+            # }
 
-  def self.endpoint?(event, movies)
-    event.results.count == movies.count**2
+  def self.endpoint?(current_event, movies)
+    current_event.results.count == movies.count**2
   end
 
   def results?
