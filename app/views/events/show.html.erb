@@ -35,11 +35,5 @@
 <% end %>
 
 <% if @event.everyone_swiped?(@movies) %>
-  <% raise %>
-  Everyone swiped, results:
-  <br>
-  <% @event.results.prefered.each do |result| %>
-  movie: <%= result.movie.trakt_payload["title"] %>
-  <br>
-  <% end %>
+  <% controller.redirect_to event_results_path(@event) %>
 <% end %>

@@ -3,8 +3,16 @@ class Event < ApplicationRecord
   has_many :users, through: :user_events
   has_many :results, dependent: :delete_all
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :date, presence: true
+  validates :name,
+            presence: true,
+            length: { maximum: 50 }
+
+  validates :date,
+            presence: true,
+            uniqueness: {
+              scope: :address,
+              message: 'one event per date/address pair allowed'
+            }
 
   def self.endpoint?(event, movies)
     event.results.count == movies.count**2
