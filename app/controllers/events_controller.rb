@@ -2,9 +2,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @pending_events = user_events_custom_filter('pending')
-    @admin_events = user_events_custom_filter('admin')
-    @accepted_events = user_events_custom_filter('accepted')
+    @pending_events = user_events_filter('pending')
+    @admin_events = user_events_filter('admin')
+    @accepted_events = user_events_filter('accepted')
   end
 
   def show
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
 
   private
 
-  def user_events_custom_filter(preference)
+  def user_events_filter(preference)
     current_user.user_events.where(status: preference).map(&:event).reverse
   end
 
@@ -68,8 +68,9 @@ class EventsController < ApplicationController
     end
 
     emails.each do |email|
-      next if User.where(email: email).take
       next if email.blank?
+      # next if User.where(email: email).take
+      next if User.pluck(:email).include?(email)
 
       password = SecureRandom.hex(10)
       temp_user = User.create!(email: email, password: password, password_confirmation: password)
