@@ -26,9 +26,6 @@
       ), method: :post, class: 'text-success' %>
     </div>
   <% end %>
-  <% if Event.endpoint?(@event, @movies) %>
-    <h3 style="text-align: center">✅ Nothing to swipe! Waiting for your friends' valuable opinion.</h3>
-  <% end %>
 <% else %>
   <h3 style="text-align: center">No matches!</h3>
 <% end %>

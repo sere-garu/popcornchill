@@ -1,28 +1,27 @@
 <% if @pending_events.any? %>
   <h3><%= pluralize(@pending_events.count, 'invite') %></h3>
 
-  <% @pending_events.each do |pending| %>
-    <% date = pending.date.strftime '%A, %e %B' %>
+  <% @pending_events.each do |pending_event| %>
+    <% date = pending_event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
 
       <%= link_to 'Reject',
-        user_event_path(pending),
+        user_event_path(pending_event),
         method: :delete,
         data: { confirm: 'Are you sure?' },
         class: 'text-danger' %>
 
       <%= link_to 'Accept',
-        user_event_path(pending),
+        user_event_path(pending_event),
         method: :patch,
         class: 'text-success' %>
       <br>
-      <%= pending.name %> | <%= date %> | <%= pending.address %>
+      <%= pending_event.name %> | <%= date %> | <%= pending_event.address %>
     </p>
     <p style="margin-top: 0">
       <small>
-        <% pending.user_events.each do |friend| %>
-          <%= friend.user.name || friend.user.email %>
-          (<%= friend.status %>)
+        <% pending_event.user_events.each do |friend| %>
+          <%= friend.user.name || friend.user.email %> (<%= friend.status %>)
         <% end %>
       </small>
     </p>
@@ -34,39 +33,38 @@
 <% if @admin_events.any? %>
   <h3>Your events</h3>
 
-  <% @admin_events.each do |admin| %>
-    <% date = admin.date.strftime '%A, %e %B' %>
+  <% @admin_events.each do |admin_event| %>
+    <% date = admin_event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
-      <% if admin.results? %>
+      <% if admin_event.results.any? %>
         <%= link_to 'Results',
-          event_results_path(admin),
+          event_results_path(admin_event),
           class: 'text-success' %>
+      <% else %>
+        <span class="text-secondary">no results</span>
       <% end %>
 
-      <% if admin.everyone_swiped?(Movie.in_common(admin)) %>
+      <% if admin_event.everyone_swiped?(Movie.in_common(admin_event)) %>
         <span class="text-secondary">
-          <%= (admin.date.to_date - Date.today.to_date).to_i %> days left
+          <%= (admin_event.date.to_date - Date.today.to_date).to_i %> days left
         </span>
-      <% elsif Event.endpoint?(admin, Movie.in_common(admin)) %>
-        endpoint
-      <% elsif admin.someone_new_accepted? %>
-        <%= link_to 'Swipe', event_path(admin), class: 'text-warning' %>
+      <% elsif admin_event.someone_new_accepted? %>
+        <%= link_to 'Swipe', event_path(admin_event), class: 'text-warning' %>
       <% end %>
 
-      <%= link_to 'Edit', edit_event_path(admin) %>
+      <%= link_to 'Edit', edit_event_path(admin_event) %>
       <%= link_to 'Delete',
-        event_path(admin),
+        event_path(admin_event),
         method: :delete,
         data: { confirm: 'Are you sure?' },
         class: 'text-danger' %>
       <br>
-      <%= admin.name %> | <%= date %> | <%= admin.address %>
+      <%= admin_event.name %> | <%= date %> | <%= admin_event.address %>
     </p>
     <p style="margin-top: 0">
       <small>
-        <% admin.user_events.each do |friend| %>
-          <%= friend.user.name || friend.user.email %>
-          (<%= friend.status %>)
+        <% admin_event.user_events.each do |friend| %>
+          <%= friend.user.name || friend.user.email %> (<%= friend.status %>)
         <% end %>
       </small>
     </p>
@@ -78,33 +76,32 @@
 <% if @accepted_events.any? %>
   <h3>Accepted events</h3>
 
-  <% @accepted_events.each do |accepted| %>
-    <% date = accepted.date.strftime '%A, %e %B' %>
+  <% @accepted_events.each do |accepted_event| %>
+    <% date = accepted_event.date.strftime '%A, %e %B' %>
     <p style="margin-bottom: 0">
-      <% if accepted.results? %>
+      <% if accepted_event.results.any? %>
         <%= link_to 'Results',
-          event_results_path(accepted),
+          event_results_path(accepted_event),
           class: 'text-success' %>
+      <% else %>
+        <span class="text-secondary">no results</span>
       <% end %>
 
-      <% if accepted.everyone_swiped?(Movie.in_common(accepted)) %>
+      <% if accepted_event.everyone_swiped?(Movie.in_common(accepted_event)) %>
         <span class="text-secondary">
-          <%= (accepted.date.to_date - Date.today.to_date).to_i %> days left
+          <%= (accepted_event.date.to_date - Date.today.to_date).to_i %> days left
         </span>
-      <% elsif Event.endpoint?(accepted, Movie.in_common(accepted)) %>
-
-      <% elsif accepted.someone_new_accepted? %>
-        <%= link_to 'Swipe', event_path(accepted), class: 'text-warning' %>
+      <% elsif accepted_event.someone_new_accepted? %>
+        <%= link_to 'Swipe', event_path(accepted_event), class: 'text-warning' %>
       <% end %>
 
       <br>
-      <%= accepted.name %> | <%= date %> | <%= accepted.address %>
+      <%= accepted_event.name %> | <%= date %> | <%= accepted_event.address %>
     </p>
     <p style="margin-top: 0">
       <small>
-        <% accepted.user_events.each do |friend| %>
-          <%= friend.user.name || friend.user.email %>
-          (<%= friend.status %>)
+        <% accepted_event.user_events.each do |friend| %>
+          <%= friend.user.name || friend.user.email %> (<%= friend.status %>)
         <% end %>
       </small>
     </p>

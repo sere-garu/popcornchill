@@ -14,25 +14,19 @@ class Event < ApplicationRecord
             #   message: 'one event per date/address pair allowed'
             # }
 
-  def self.endpoint?(current_event, movies)
-    current_event.results.count == movies.count**2
-  end
-
-  def results?
-    results.map(&:user_id).uniq.count.positive?
-  end
-
-  def everyone_pending?
-    user_events.map(&:status).uniq.sort == %w[admin pending]
+  def everyone_swiped?(matches)
+    # users.take(users.length).length * matches.size == results.map(&:user).count
+    @accepted_users = user_events.pluck(:status).delete_if { |s| s == 'pending' }.count
+    @accepted_users * matches.count == results.pluck(:user_id).count
   end
 
   def someone_new_accepted?
     # user_events.where(status: 'accepted').any?
-    user_events.pluck(:status).count('accepted') == users.count - 1
+    user_events.pluck(:status).count('accepted') == @accepted_users - 1
   end
 
-  def everyone_swiped?(watchlist)
-    users.take(users.length).length * watchlist.size == results.map(&:user).count
+  def everyone_pending?
+    user_events.map(&:status).uniq.sort == %w[admin pending]
   end
 
   def admin?(user)
