@@ -2,8 +2,6 @@
 
 <% @results.each do |result| %>
   <p>
-    <%= result.user.name %>
-  | <%= result.movie.trakt_payload['title'] %>
-  | <%= result.preference %>
+    <%= result.user.name %> -> <%= result.movie.trakt_payload['title'] %>
   </p>
 <% end %>

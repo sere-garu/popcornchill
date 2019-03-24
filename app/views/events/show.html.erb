@@ -26,18 +26,10 @@
       ), method: :post, class: 'text-success' %>
     </div>
   <% end %>
-  <% if Event.endpoint?(@event, @movies) %>
-    <h3 style="text-align: center">✅ Nothing to swipe!</h3>
-  <% end %>
 <% else %>
   <h3 style="text-align: center">No matches!</h3>
 <% end %>
 
 <% if @event.everyone_swiped?(@movies) %>
-  Everyone swiped, results:
-  <br>
-  <% @event.results.prefered.each do |result| %>
-  movie: <%= result.movie.trakt_payload["title"] %>
-  <br>
-  <% end %>
+  <% controller.redirect_to event_results_path(@event) %>
 <% end %>
