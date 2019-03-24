@@ -51,8 +51,8 @@
           <%= (admin.date.to_date - Date.today.to_date).to_i %> days left
         </span>
       <% elsif Event.endpoint?(admin, Movie.in_common(admin)) %>
-
-      <% elsif admin.someone_accepted? %>
+        endpoint
+      <% elsif admin.someone_new_accepted? %>
         <%= link_to 'Swipe', event_path(admin), class: 'text-warning' %>
       <% end %>
 
@@ -96,7 +96,7 @@
         </span>
       <% elsif Event.endpoint?(accepted, Movie.in_common(accepted)) %>
 
-      <% elsif accepted.someone_accepted? %>
+      <% elsif accepted.someone_new_accepted? %>
         <%= link_to 'Swipe', event_path(accepted), class: 'text-warning' %>
       <% end %>
 

@@ -26,8 +26,9 @@ class Event < ApplicationRecord
     user_events.map(&:status).uniq.sort == %w[admin pending]
   end
 
-  def someone_accepted?
-    user_events.where(status: 'accepted').any?
+  def someone_new_accepted?
+    # user_events.where(status: 'accepted').any?
+    user_events.pluck(:status).count('accepted') == users.count - 1
   end
 
   def everyone_swiped?(watchlist)
