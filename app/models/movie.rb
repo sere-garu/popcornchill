@@ -16,11 +16,11 @@ class Movie < ApplicationRecord
       movies << movie_ids_for_user
     end
 
-    uniq_movies = movies.flatten
+    uniq_movies = movies.flatten.uniq
 
-    duplicates = uniq_movies.select { |id| uniq_movies.count(id) > 1 }
+    # duplicates = uniq_movies.select { |id| uniq_movies.count(id) > 1 }
 
-    where(id: duplicates.uniq)
+    where(id: uniq_movies)
   end
 
   def preference?(user)
