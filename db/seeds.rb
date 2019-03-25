@@ -142,43 +142,43 @@ oscar = User.create!(email: 'oscar@oscar.com',
              phone_number: Faker::PhoneNumber.phone_number,
              avatar: 'http://pluspng.com/img-png/png-cute-cat-our-services-facilities-1698.jpg')
 
-preferences = %w[yep nope]
-User.all.each do |user|
-  Movie.all.each do |movie|
-    next if (1..5).include? (1..10).to_a.sample
-    user.wishlists.create(movie: movie, preference: preferences.sample)
-    # Wishlist.create(user: user, movie: movie, preference: preferences.sample)
-  end
-end
+# preferences = %w[yep nope]
+# User.all.each do |user|
+#   Movie.all.each do |movie|
+#     next if (1..5).include? (1..10).to_a.sample
+#     user.wishlists.create(movie: movie, preference: preferences.sample)
+#     # Wishlist.create(user: user, movie: movie, preference: preferences.sample)
+#   end
+# end
 
-puts 'Creating events...'
-2.times do
-  Event.create!(name: "#{Faker::Team.mascot} in da #{Faker::House.room}",
-                date: Faker::Date.forward(29),
-                address: Faker::Address.street_address,
-                latitude: Faker::Address.latitude,
-                longitude: Faker::Address.longitude)
-end
+# puts 'Creating events...'
+# 2.times do
+#   Event.create!(name: "#{Faker::Team.mascot} in da #{Faker::House.room}",
+#                 date: Faker::Date.forward(29),
+#                 address: Faker::Address.street_address,
+#                 latitude: Faker::Address.latitude,
+#                 longitude: Faker::Address.longitude)
+# end
 
-puts 'Creating user events...'
-status = %w[admin pending accepted rejected]
-UserEvent.create!(user_id: serena.id, event_id: Event.all[0].id, status: status[0])
-UserEvent.create!(user_id: damiano.id, event_id: Event.all[0].id, status: status[2])
-UserEvent.create!(user_id: oscar.id, event_id: Event.all[1].id, status: status[0])
-UserEvent.create!(user_id: anders.id, event_id: Event.all[1].id, status: status[2])
-UserEvent.create!(user_id: damiano.id, event_id: Event.all[1].id, status: status[2])
+# puts 'Creating user events...'
+# status = %w[admin pending accepted rejected]
+# UserEvent.create!(user_id: serena.id, event_id: Event.all[0].id, status: status[0])
+# UserEvent.create!(user_id: damiano.id, event_id: Event.all[0].id, status: status[2])
+# UserEvent.create!(user_id: oscar.id, event_id: Event.all[1].id, status: status[0])
+# UserEvent.create!(user_id: anders.id, event_id: Event.all[1].id, status: status[2])
+# UserEvent.create!(user_id: damiano.id, event_id: Event.all[1].id, status: status[2])
 
-puts 'Creating results...'
-Event.all.each do |event|
-  movie_ids = event.users.map { |user| user.wishlists.where(preference: 'yep').pluck(:movie_id) }.flatten.uniq
-  # puts "movie_ids ---> #{movie_ids}"
+# puts 'Creating results...'
+# Event.all.each do |event|
+#   movie_ids = event.users.map { |user| user.wishlists.where(preference: 'yep').pluck(:movie_id) }.flatten.uniq
+#   # puts "movie_ids ---> #{movie_ids}"
 
-  all_movies = Movie.where(id: movie_ids)
+#   all_movies = Movie.where(id: movie_ids)
 
-  all_movies.each do |movie|
-    event.users.each do |user|
-      # puts "Result <--- #{user.email} -> #{movie.id}"
-      Result.create!(event: event, movie: movie, user: user, preference: preferences.sample)
-    end
-  end
-end
+#   all_movies.each do |movie|
+#     event.users.each do |user|
+#       # puts "Result <--- #{user.email} -> #{movie.id}"
+#       Result.create!(event: event, movie: movie, user: user, preference: preferences.sample)
+#     end
+#   end
+# end

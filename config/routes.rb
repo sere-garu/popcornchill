@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :wishlists, only: %i[index create destroy]
-  resources :user_events, only: :update
+  resources :user_events, only: %i[update destroy]
 
   root to: 'events#index'
 end

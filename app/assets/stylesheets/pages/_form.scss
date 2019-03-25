@@ -1,0 +1,68 @@
+h2 {
+	text-align: center;
+	color: $gray;
+}
+
+.signup_container {
+	margin: auto;
+	width: 40vw;
+	padding: 20px 30px 20px 30px;
+	color: $black;
+	// background: $senape;
+}
+
+.signup {
+	margin: auto;
+	margin-top: 55px;
+	margin-bottom: 80px;
+	width: 35vw;
+	padding: 20px 30px 20px 30px;
+	background: #F4F4F4;
+	border: 1px solid rgba(0,0,0,0.125);
+  border-radius: 0.25rem;
+}
+
+.button_pc {
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	color: $gray;
+	background: #FCBA04;
+	width: 12vw;
+  border-radius: 20px;
+	text-align: center;
+}
+
+.button_pc:hover {
+	color: white;	
+}
+
+.form-inputs input:required {
+  border-left-color: $green;
+  border-left-width: 2.5px;
+  width: 80%;
+}
+
+.form-inputs input:optional {
+  border-left-color: $red;
+  border-left-width: 2.5px;
+  width: 80%;
+}
+
+.form-inputs input:invalid, .form-control.is-invalid {
+  border-left-color: $red;
+  border-left-width: 2.5px;
+  width: 80%;
+}
+
+.form-inputs input:valid, .form-control.is-valid, .form-inputs input:invalid, .form-control.is-invalid {
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+ }
+
+.cancel_acct {
+	color: gray;
+	align: right;
+	padding-right: 15px;
+}

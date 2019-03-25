@@ -7,6 +7,8 @@ class UserEvent < ApplicationRecord
             inclusion: {
               in: %w[admin pending accepted rejected],
               message: "%{value} is not allowed"
+            }, uniqueness: {
+              scope: %i[user_id event_id],
+              message: 'one status per user/event pair allowed'
             }
-  validates_uniqueness_of :user_id, scope: :event_id
 end
