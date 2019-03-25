@@ -1,0 +1,45 @@
+
+p, h1, h2, h3, h4, h5, h6, {
+	color: $light-gray;
+}
+
+.wrapper {
+	background-color: $dark-black;
+}
+
+.wishlist-container {
+	margin: auto;
+	width: 40vw;
+}
+
+.wishlist-search {
+  border-radius: 20px;
+}
+
+#search-field {
+	border-radius: 25px;
+  background-color: #2E3134;
+  border: none;
+}
+
+.button-holder {
+
+}
+
+.inner-addon { 
+  position: relative; 
+}
+
+/* style icon */
+.inner-addon .magnifier {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .magnifier  { left:  0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+
