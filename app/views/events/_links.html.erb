@@ -1,15 +1,19 @@
-<% if event.results.any? %>
-  <%= link_to 'Results',
-    event_results_path(event),
-    class: 'text-success' %>
-<% else %>
-  <span class="text-secondary">no results</span>
-<% end %>
+<div class="swipe-result">
 
-<% if event.everyone_swiped?(Movie.in_common(event)) %>
-  <span class="text-secondary">
-    <%= (event.date.to_date - Date.today.to_date).to_i %> days left
-  </span>
-<% elsif event.someone_new_accepted? %>
-  <%= link_to 'Swipe', event_path(event), class: 'text-warning' %>
-<% end %>
+  <% if event.everyone_swiped?(Movie.in_common(event)) %>
+    <!-- <span class="btn-sm action-right final">
+      <%#= (event.date.to_date - Date.today.to_date).to_i %> days left
+    </span> -->
+  <% elsif event.someone_new_accepted? %>
+    <%= link_to 'Swipe', event_path(event), class: 'btn-sm action-left active' %>
+  <% end %>
+
+  <% if event.results.any? %>
+    <%= link_to 'Results',
+      event_results_path(event),
+      class: 'btn-sm action-right final' %>
+  <% else %>
+    <span class="btn-sm action-right">Results</span>
+  <% end %>
+
+</div>
