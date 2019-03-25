@@ -18,7 +18,7 @@
         method: :patch,
         class: 'text-success' %>
       <br>
-      <%= pending_event.name %> | <%= date %> | <%= pending_event.address %>
+      <%= date %> | <%= pending_event.address %>
     </p>
     <%= render 'friends', event: pending_event %>
   <% end %>
@@ -45,7 +45,7 @@
         data: { confirm: 'Are you sure?' },
         class: 'text-danger' %>
       <br>
-      <%= admin_event.name %> | <%= date %> | <%= admin_event.address %>
+      <%= date %> | <%= admin_event.address %>
     </p>
     <%= render 'friends', event: admin_event %>
   <% end %>
@@ -65,7 +65,7 @@
       <%= render 'links', event: accepted_event %>
 
       <br>
-      <%= accepted_event.name %> | <%= date %> | <%= accepted_event.address %>
+      <%= date %> | <%= accepted_event.address %>
     </p>
     <%= render 'friends', event: accepted_event %>
   <% end %>
@@ -98,7 +98,6 @@
           <%= render 'links', event: admin_event %>
         </div>
       </div>
-
     </div>
   <% end %>
 <% end %>
