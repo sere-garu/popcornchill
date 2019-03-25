@@ -42,7 +42,7 @@
           movie: movie,
           color: 'text-success' %>
 
-        <%= render 'link_to_create',
+        <%#= render 'link_to_create',
           text: 'nope',
           movie: movie,
           color: 'text-danger' %>
@@ -54,7 +54,7 @@
 
           <%= movie.trakt_payload['title'] %>
 
-          <%= link_to 'Revert',
+          <%#= link_to 'Revert',
             Wishlist.where(movie: movie, user: current_user).take,
             method: :delete,
             class: 'text-danger' %>
