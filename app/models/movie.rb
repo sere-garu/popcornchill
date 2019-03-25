@@ -7,7 +7,9 @@ class Movie < ApplicationRecord
   ROOT_URL = "https://api.trakt.tv/"
   # TOKEN_PATH = "oauth/device/token"
   # DEVICE_PATH = "oauth/device/code"
-  MOVIES_PATH = "recommendations/movies?ignore_collected=false"
+  # MOVIES_PATH = "recommendations/movies?ignore_collected=false"
+  MOVIES_PATH = "recommendations/movies?ignore_collected=false&limit=100"
+
 
   AUTH = {
     client_id: 'edfb16eb6a0bd6e5b70834648d9bb4a7531a86ca81cb67d55f8c6d545dcee3af',

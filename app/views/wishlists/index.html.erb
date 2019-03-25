@@ -14,7 +14,7 @@
 <% unless @wishlists.nil? %>
   <% @wishlists.each do |wishlist| %>
     <p>
-      <%= wishlist.movie.id %>
+      <%#= wishlist.movie.id %>
 
       <%= wishlist.movie.trakt_payload['title'] %>
 
@@ -30,10 +30,10 @@
 
 <% unless @movies_payload.nil? %>
   <% @movies_payload.each do |movie| %>
-    <p>
+    <p class="item-movie" data-title="<%= movie.trakt_payload['title'] %>">
       <% if current_user.wishlists.where(movie: movie).empty? %>
 
-        <%= movie.id %>
+        <%#= movie.id %>
 
         <%= movie.trakt_payload['title'] %>
 
