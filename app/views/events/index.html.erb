@@ -94,7 +94,7 @@
         method: :delete,
         class: 'dropdown-item'%>
       </div >
-      <% if event.results? %>
+      <% if event.results.any? %>
         <%= link_to 'Results',
           event_results_path(event),
           class: 'text-success' %>
