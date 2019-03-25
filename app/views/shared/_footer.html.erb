@@ -2,17 +2,33 @@
  -->
 <div class="footer">
    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <i class="fas fa-home"></i>
+
+      <%= link_to root_path, class:"footer-label" do %>
+         <%= image_tag "home.png", class: "navbar-brand" %>
+          <label class="footer-label">HOME</label>
       <% end %>
 
-      <%= link_to new_event_path, class: "navbar-brand" do %>
-        <i class="far fa-plus-square"></i>
+      <%= link_to new_event_path, class:"footer-label" do %>
+          <%= image_tag "add.png", class: "navbar-brand" %>
+          <label class="footer-label">NEW EVENT</label>
       <% end %>
 
-      <%= link_to wishlists_path, class: "navbar-brand" do %>
-        <i class="fas fa-film"></i>
+      <%= link_to new_event_path, class:"footer-label" do %>
+          <%= image_tag "search (1).png", class: "navbar-brand" %>
+          <label class="footer-label">SEARCH</label>
       <% end %>
+
+      <%= link_to wishlists_path, class:"footer-label" do %>
+          <%= image_tag "clapperboard.png", class: "navbar-brand" %>
+          <label class="footer-label">WATCHLIST</label>
+      <% end %>
+
+
 
   </div>
+
 </div>
+
+
+
+
