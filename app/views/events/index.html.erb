@@ -73,32 +73,32 @@
   <h3 style="text-align: center">No accepted events</h3>
 <% end %>
 
-<% Event.all.each do |event| %>
-  <div class="card-event">
-      <h1 class="event-title"><%= event.name %></h1>
-      <h1 class="event-address"><%= event.address %></h1>
-      <h1 class="event-date"><%= (event.date.to_date - Date.today.to_date).to_i %> days left </h1>
-    <div class="event-guests">
-      <% event.user_events.each do |friend| %>
-    <div class="avatar avatar-circle">
-      <div class="initials"><%= friend.user.name[0] %></div>
-    </div>
-      <% end %>
+<% if @admin_events.any? %>
+  <% @admin_events.each do |admin_event| %>
+    <% date = admin_event.date.strftime '%A, %e %B' %>
+    <div class="card-event">
+      <div class="card-event-info">
+        <div class="event-title"><%= date %></div>
+        <div class="event-more">
+        <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dxl0m2akr/image/upload/v1553521025/more_3.png" />
+          <div class="dropdown-menu">
+            <%= link_to 'Edit', edit_event_path(admin_event), class: "dropdown-item" %>
+            <%= link_to 'Delete', event_path(admin_event), method: :delete, class: 'dropdown-item'%>
+          </div >
+          </div>
       </div>
-    <div class="card-event-infos">
-      <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dxl0m2akr/image/upload/v1553254346/more_2.png" />
-      <div class="dropdown-menu">
-        <%= link_to 'Edit', edit_event_path(event), class: "dropdown-item" %>
-        <%= link_to 'Delete',
-        event_path(event),
-        method: :delete,
-        class: 'dropdown-item'%>
-      </div >
-      <% if event.results.any? %>
-        <%= link_to 'Results',
-          event_results_path(event),
-          class: 'text-success' %>
-      <% end %>
+
+      <h1 class="event-address"><%= admin_event.address %></h1>
+
+      <div class="card-buttons-avatar">
+        <div class="event-guests">
+          <%= render 'friends', event: admin_event %>
+        </div>
+        <div class="event-actions">
+          <%= render 'links', event: admin_event %>
+        </div>
+      </div>
+
     </div>
-  </div>
+  <% end %>
 <% end %>

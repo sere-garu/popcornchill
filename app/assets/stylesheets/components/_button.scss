@@ -1,0 +1,124 @@
+.action-left .full {
+  background: $light-yellow;
+  border: 1px solid $light-yellow;
+  box-sizing: border-box;
+  border-radius: 0px 6px 6px 0px;
+  width: 78px;
+  height: 27px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+  color: $dark-black;
+}
+
+.action-right.final {
+  border: 1px solid $light-yellow;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 155px;
+  height: 27px;
+  background-color: $dark-black;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+
+  color: $light-yellow;
+
+}
+
+
+.action-right.active {
+  border: 1px solid $light-yellow;
+  box-sizing: border-box;
+  border-radius: 0px 6px 6px 0px;
+  width: 78px;
+  height: 27px;
+  background-color: $dark-black;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+
+  color: $light-yellow;
+
+}
+
+.action-left.active {
+  border: 1px solid $light-yellow;
+  box-sizing: border-box;
+  border-radius: 6px 0px 0px 6px;
+  width: 78px;
+  height: 27px;
+  background-color: $dark-black;
+
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+  color: $light-yellow;
+
+}
+
+.action-right {
+  border: 1px solid $dark-yellow;
+  box-sizing: border-box;
+  border-radius: 0px 6px 6px 0px;
+  width: 78px;
+  height: 27px;
+  background-color: $dark-black;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+
+  color: $dark-yellow;
+
+}
+
+.action-left {
+  mix-blend-mode: normal;
+  border: 1px solid $dark-yellow;
+  box-sizing: border-box;
+  border-radius: 6px 0px 0px 6px;
+  width: 78px;
+  height: 27px;
+  background-color: $dark-black;
+  text-align: center;
+
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  color: $dark-yellow;
+
+  mix-blend-mode: normal;
+
+}
+
+.swipe-result {
+  display:flex;
+}
