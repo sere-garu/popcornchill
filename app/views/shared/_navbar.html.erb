@@ -7,7 +7,12 @@
       <% if current_user.photo.present? %>
               <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %>
-              <%= image_tag 'https://res.cloudinary.com/dxl0m2akr/image/upload/v1553097599/blank-profile-picture.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
+              <%#= image_tag 'https://res.cloudinary.com/dxl0m2akr/image/upload/v1553097599/blank-profile-picture.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="user">
+          <!-- <i class="far fa-user"></i> -->
+          <span id="initial-letter"><%= current_user.name[0].upcase %></span>
+        </div>
       <% end %>
       </span>
     <% else %>

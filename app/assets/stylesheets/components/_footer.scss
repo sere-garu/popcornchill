@@ -1,1 +1,40 @@
 // _footer.scss
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  margin-top: 50px;
+}
+
+
+
+.fas {
+color: #FCBA04;
+}
+
+.far {
+color: #FCBA04;
+}
+
+
+
+.navbar-lewagon {
+
+  background-color: #141414;
+}
+
+label {
+  margin-bottom: 0;
+  line-height: 0.8;
+  color: $light-gray;
+  font-weight: 100;
+  font-size: 9px;
+}
+
+.footer-label {
+  display: flex;
+  flex-direction: column;
+}
+
+

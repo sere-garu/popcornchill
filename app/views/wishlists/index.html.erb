@@ -44,7 +44,6 @@
 
 
 <div class="pick-movie">
-
   </div>
     <h3>Pick a movie</h3>
 
@@ -52,7 +51,6 @@
       <% @movies_payload.each do |movie| %>
         <p>
           <% if current_user.wishlists.where(movie: movie).empty? %>
-
             <%= movie.id %>
 
             <%= movie.trakt_payload['title'] %>

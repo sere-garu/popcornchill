@@ -1,0 +1,59 @@
+/* Main input wrapper */
+.algolia-places {
+  font-family: $body-font;
+}
+
+/* The algolia-places input */
+.ap-input, .ap-hint {
+  color: $dark-gray;
+  background-color: $black;
+}
+
+.ap-input:focus {
+  color: $dark-gray;
+  background-color: $black;
+}
+
+/* The style of the svg icons when the input is on hover */
+.ap-input:hover ~ .ap-input-icon svg,
+.ap-input:focus ~ .ap-input-icon svg,
+.ap-input-icon:hover svg {}
+
+/* The dropdown style */
+.ap-dropdown-menu {
+  color: $dark-gray;
+  background-color: $black;
+}
+
+/* The suggestions style */
+.ap-suggestion {
+  color: $dark-gray;
+  background-color: $black;
+}
+
+/* The highlighted names style */
+.ap-suggestion em {
+  color: $light-gray;
+}
+
+/* The addresses style */
+.ap-address {
+  opacity: .4;
+}
+
+/* The icons of each suggestions ( can be a building or a pin ) */
+.ap-suggestion-icon {
+  display: none;
+}
+
+/* The styles of the Algolia Places input footer */
+.ap-footer {
+  display: none;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
