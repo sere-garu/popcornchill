@@ -1,4 +1,5 @@
 import "bootstrap";
+import "../plugins/flatpickr"
 
 import places from 'places.js';
 

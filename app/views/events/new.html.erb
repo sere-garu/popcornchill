@@ -1,7 +1,9 @@
 <%= simple_form_for @event do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :date, required: true, label: false %>
+  <%= f.input :date, required: true, label: false,
+              as: :string,
+              input_html: {class: "datepicker"} %>
 
   <%= f.input :address, required: true, label: false,
               as: :search,
