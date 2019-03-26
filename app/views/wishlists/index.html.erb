@@ -45,6 +45,7 @@
 
   <% unless @movies_payload.nil? %>
     <% @movies_payload.each do |movie| %>
+      <div class="movie-card">
       <p>
         <% if current_user.wishlists.where(movie: movie).empty? %>
           <%#= movie.id %>
@@ -75,6 +76,7 @@
           </span>
         <% end %>
       </p>
+      </div>
     <% end %>
   <% end %>  
 </div>
