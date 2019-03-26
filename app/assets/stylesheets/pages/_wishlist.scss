@@ -40,16 +40,25 @@ h3 {
 /* style icon */
 .inner-addon .magnifier {
   position: absolute;
-  padding: 7px 10px;
+  padding: 7px 30px;
   pointer-events: none;
 }
 
 /* align icon */
-.left-addon .magnifier  { left:  0px;}
+// .left-addon .magnifier  { left:  0px;}
+.right-addon .magnifier  { right:  0px;}
 
 /* add padding  */
-.left-addon input  { padding-left:  30px; }
+// .left-addon input  { padding-left:  30px; }
+.right-addon input  { padding-right:  30px; }
 
 // Magnifying Icon Glyphicon >> delete this line once working 
 
 
+/* align icon */
+// .left-addon .glyphicon  { left:  0px;}
+// .right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+// .left-addon input  { padding-left:  30px; }
+// .right-addon input { padding-right: 30px; }
