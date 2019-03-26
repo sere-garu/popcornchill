@@ -1,5 +1,9 @@
 h3 {
- padding-bottom: 10px; 
+ padding-bottom: 5px; 
+}
+
+#welcome {
+  padding-top: 15px;
 }
 
 .watchlist {
@@ -10,6 +14,11 @@ h3 {
 .pick-movie {
   padding-top: 10px;
   padding-bottom: 100px;
+}
+
+#done-button {
+  position: absolute;
+  right: 70px;
 }
 
 .wishlist-search {
