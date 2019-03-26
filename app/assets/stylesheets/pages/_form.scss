@@ -1,12 +1,33 @@
 .login-form {
   text-align: center;
   margin-top: 64px;
+  h2 {
+    color: $light-yellow !important;
+    font-weight: 500;
+    font-size: 25px;
+  }
 }
 
 .login-fields > div {
-  margin: 1px;
+  margin: 0;
 }
 
-.custom-input {
+.form-control {
   border-radius: 20px;
+  background: $black;
+  border: none;
+  color: $dark-gray;
+  &:focus {
+   background: $black;
+   color: $light-gray;
+  }
+}
+
+.email {
+  border-bottom: 1px solid $dark-black;
+  border-radius: 20px 20px 0 0;
+}
+
+.password {
+  border-radius: 0 0 20px 20px;
 }
