@@ -1,0 +1,45 @@
+.movie-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px; /* 5px rounded corners */
+  margin: 80px auto 10px auto;
+  background-image: linear-gradient(50deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.5) 100%), url(https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80);
+  width: 95%;
+  background-size: cover;
+  height: 50vh;
+  position: relative;
+}
+
+.movie-card > h4 {
+  position: absolute;
+  bottom: 30px;
+  margin-left: 6px;
+  color: white;
+
+}
+
+.movie-card > p {
+  position: absolute;
+  bottom: 0px;
+  margin-left: 6px;
+  color: white;
+}
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.movie-card h4 {
+color: #E5E5E5;
+
+}
+
+
+.swipe-button {
+
+
+}
+
+
+
+
+

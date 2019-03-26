@@ -1,7 +1,25 @@
 <h3>Results for <%= @event.name %></h3>
 
+<div class="card-container">
+
 <% @results.each do |result| %>
+
   <p>
     <%= result.user.name %> -> <%= result.movie.trakt_payload['title'] %>
   </p>
+
+    <div class="movie-card">
+      <h4><%= result.movie.trakt_payload["title"] %></h4>
+      <p>Year, Director</p>
+    </div>
+
 <% end %>
+
+</div>
+
+
+
+
+<!-- events/1/results/ -->
+
+
