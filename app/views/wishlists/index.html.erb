@@ -16,9 +16,6 @@
               placeholder: 'title, director, year, actor, genre' %>
           </p>
         </div>
-
-      
-
       </div>
     </div>
   <% end %>
@@ -42,44 +39,41 @@
   <% end %>
 </div>
 
-
 <div class="pick-movie">
-  </div>
-    <h3>Pick a movie</h3>
+  <h3>Pick a movie</h3>
 
-    <% unless @movies_payload.nil? %>
-      <% @movies_payload.each do |movie| %>
-        <p>
-          <% if current_user.wishlists.where(movie: movie).empty? %>
-            <%= movie.id %>
+  <% unless @movies_payload.nil? %>
+    <% @movies_payload.each do |movie| %>
+      <p>
+        <% if current_user.wishlists.where(movie: movie).empty? %>
+          <%= movie.id %>
+
+          <%= movie.trakt_payload['title'] %>
+
+          <%= render 'link_to_create',
+            text: 'yep',
+            movie: movie,
+            color: 'text-success' %>
+
+          <%#= render 'link_to_create',
+            text: 'nope',
+            movie: movie,
+            color: 'text-danger' %>
+
+        <% else %>
+
+          <span class="text-secondary" style="opacity: .3">
+            <% next if current_user.wishlists.where(movie: movie).take.preference == 'yep' %>
 
             <%= movie.trakt_payload['title'] %>
 
-            <%= render 'link_to_create',
-              text: 'yep',
-              movie: movie,
-              color: 'text-success' %>
-
-            <%#= render 'link_to_create',
-              text: 'nope',
-              movie: movie,
-              color: 'text-danger' %>
-
-          <% else %>
-
-            <span class="text-secondary" style="opacity: .3">
-              <% next if current_user.wishlists.where(movie: movie).take.preference == 'yep' %>
-
-              <%= movie.trakt_payload['title'] %>
-
-              <%#= link_to 'Revert',
-                Wishlist.where(movie: movie, user: current_user).take,
-                method: :delete,
-                class: 'text-danger' %>
-            </span>
-          <% end %>
-        </p>
-      <% end %>
-    <% end %>  
+            <%#= link_to 'Revert',
+              Wishlist.where(movie: movie, user: current_user).take,
+              method: :delete,
+              class: 'text-danger' %>
+          </span>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>  
 </div>
-
