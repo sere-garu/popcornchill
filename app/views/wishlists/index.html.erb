@@ -5,7 +5,7 @@
     <div class="wishlist-search">
       <div id='button-holder'>
         <div class="inner-addon left-addon">
-          
+
         </div>
         <div class="magnifier">
           <%= image_tag "search.png", alt: "Create your wishlist", width: 15 %>
@@ -17,7 +17,7 @@
           </p>
         </div>
 
-      
+
 
       </div>
     </div>
@@ -50,7 +50,13 @@
     <% unless @movies_payload.nil? %>
       <% @movies_payload.each do |movie| %>
         <p>
+
           <% if current_user.wishlists.where(movie: movie).empty? %>
+          <% if movie.image_url %>
+            <img src="<%= movie.image_url %>" alt="" height="auto" width="50px">
+          <% else %>
+            <!-- <img src="" alt="" height="auto" width="50px"> -->
+          <% end %>
             <%= movie.id %>
 
             <%= movie.trakt_payload['title'] %>
@@ -80,6 +86,6 @@
           <% end %>
         </p>
       <% end %>
-    <% end %>  
+    <% end %>
 </div>
 

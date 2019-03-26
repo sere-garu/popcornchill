@@ -1,6 +1,6 @@
 <h3>Results for <%= @event.name %></h3>
 
-<div class="card-container">
+<div class="card-container" style="margin-bottom: 200px;">
 
 <% @results.each do |result| %>
 
@@ -9,8 +9,9 @@
   </p>
 
     <div class="movie-card">
+      <img src="<%= result.movie.image_url %>" alt="">
       <h4><%= result.movie.trakt_payload["title"] %></h4>
-      <p>Year, Director</p>
+      <p><%= result.movie.trakt_payload["year"] %>, Director</p>
     </div>
 
 <% end %>
