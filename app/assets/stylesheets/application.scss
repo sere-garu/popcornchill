@@ -11,3 +11,9 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+  height: 100vw;
+  background-color: $dark-black;
+  color: $light-gray;
+}
