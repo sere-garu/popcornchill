@@ -9,6 +9,30 @@
   font-size: 12.8px;
 }
 
+.wishlist-btn {
+  background: $light-yellow;
+  color: $dark-black;
+  font-weight: 500;
+  height: 27px;
+  // margin-top: 5px;
+  margin-right: 5px;
+  padding: 0;
+  width: 78px;
+  font-size: 12.8px;
+  float: right;
+}
+
+
+
+#add-btn {
+  border: 1px solid yellow;
+  padding: 3px 19px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  font-size: 10px;
+}  
+
+
 .action-left .full {
   background: $light-yellow;
   border: 1px solid $light-yellow;
