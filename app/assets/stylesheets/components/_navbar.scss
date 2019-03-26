@@ -1,6 +1,9 @@
 .navbar-lewagon {
-  justify-content: space-between;
   background: transparent;
+  border-bottom: 1px solid $black;
+  box-sizing: border-box;
+  height: 64px;
+  justify-content: space-between;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -12,16 +15,22 @@
 }
 
 .avatar img {
-border:1px solid #FCBA04;
+  border: 1px solid $yellow;
 }
 
 .user {
   padding: 10px;
   border-radius: 50%;
-  border: 2px solid #FCBA04;
+  border: 2px solid $yellow;
 }
 
 #initial-letter {
-  color: #FCBA04;
+  color: $yellow;
   font-size: 1em;
+}
+
+.nav-link {
+  color: $light-yellow !important;
+  font-weight: 500;
+  font-size: 25px;
 }
