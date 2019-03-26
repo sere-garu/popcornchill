@@ -1,19 +1,33 @@
-<div class="swipe-result">
+<div class="connected-buttons">
 
-  <% if event.everyone_swiped?(Movie.in_common(event)) %>
-    <!-- <span class="btn-sm action-right final">
-      <%#= (event.date.to_date - Date.today.to_date).to_i %> days left
-    </span> -->
-  <% elsif event.someone_new_accepted? %>
-    <%= link_to 'Swipe', event_path(event), class: 'btn-sm action-left active' %>
-  <% end %>
+  <% if event.everyone_swiped?(Movie.in_common(event)) & !(event.everyone_pending?) %>
 
-  <% if event.results.any? %>
+
+
+
     <%= link_to 'Results',
       event_results_path(event),
       class: 'btn-sm action-right final' %>
-  <% else %>
-    <span class="btn-sm action-right">Results</span>
-  <% end %>
+    <%# elsif event.someone_new_accepted? %>
 
+    <% else %>
+
+      <% if event.everyone_pending? %>
+        <span class="btn-sm action-left">Swipe</span>
+      <% elsif event.someone_new_accepted? %>
+        <%= link_to 'Swipe', event_path(event), class: 'btn-sm action-left active' %>
+      <% else %>
+        <span class="btn-sm action-left">Swipe</span>
+      <% end %>
+
+      <% if event.results.any? %>
+      <%= link_to 'Results', event_results_path(event), class: 'btn-sm action-right active' %>
+      <% else %>
+        <span class="btn-sm action-right">Results</span>
+      <% end %>
+
+
+
+
+  <% end %>
 </div>

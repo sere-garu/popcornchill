@@ -1,7 +1,13 @@
-<p style="margin-top: 0">
-  <small>
-    <% event.user_events.each do |friend| %>
-      <%= friend.user.name || friend.user.email %> (<%= friend.status %>)
-    <% end %>
-  </small>
-</p>
+  <% event.user_events.each do |friend| %>
+    <div class="guest <%= friend.status == 'pending' ? 'pending' : '' %>">
+      <% if friend.user.photo.present? %>
+        <%= cl_image_tag friend.user.photo, class: "avatar"%>
+      <% else %>
+        <div class="avatar-circle"><div class="initials"><%= friend.user.name[0].upcase %></div></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+    <%# event.user_events.each do |friend| %>
+      <%#= friend.user.name || friend.user.email %> <%#= friend.status %>
+    <%# end %>

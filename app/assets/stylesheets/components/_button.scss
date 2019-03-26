@@ -9,6 +9,7 @@
   font-size: 12.8px;
 }
 
+
 .wishlist-btn {
   background: $light-yellow;
   color: $dark-black;
@@ -131,7 +132,6 @@
 }
 
 .action-left {
-  mix-blend-mode: normal;
   border: 1px solid $dark-yellow;
   box-sizing: border-box;
   border-radius: 6px 0px 0px 6px;
@@ -148,10 +148,9 @@
   line-height: normal;
   color: $dark-yellow;
 
-  mix-blend-mode: normal;
 
 }
 
-.swipe-result {
+.connected-buttons {
   display:flex;
 }
