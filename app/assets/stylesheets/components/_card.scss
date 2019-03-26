@@ -1,5 +1,5 @@
 .card-event {
-  background: $dark-black;
+  background: $black;
   height: 120px;
   margin-bottom: 1px;
   padding: 5px 10px;
@@ -8,7 +8,6 @@
 .card-event-info {
   display: flex;
   justify-content: space-between;
-
 }
 
 .card-buttons-avatar {
@@ -16,33 +15,28 @@
   justify-content: space-between;
 }
 
-
-
 .event-title {
-font-family: Poppins;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: normal;
-display:flex;
-
-
-color: $light-gray;
-  }
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: normal;
+  display:flex;
+  color: $light-gray;
+}
 
 .event-address {
-font-family: Poppins;
-font-style: normal;
-font-weight: 300;
-font-size: 16px;
-line-height: normal;
-width: 16em; /* the element needs a fixed width (in px, em, %, etc) */
-overflow: hidden; /* make sure it hides the content that overflows */
-white-space: nowrap; /* don't break the line */
-text-overflow: ellipsis; /* give the beautiful '...' effect */
-
-color: $dark-gray;
-  }
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: normal;
+  width: 16em; /* the element needs a fixed width (in px, em, %, etc) */
+  overflow: hidden; /* make sure it hides the content that overflows */
+  white-space: nowrap; /* don't break the line */
+  text-overflow: ellipsis; /* give the beautiful '...' effect */
+  color: $dark-gray;
+}
 
 .event-guests {
   display: flex;
@@ -55,7 +49,6 @@ color: $dark-gray;
   color: #b3b3b3;
   font-weight: lighter;
   margin-left: 7px;
-
 }
 
 .avatar-circle {
@@ -68,8 +61,8 @@ color: $dark-gray;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   margin-right: 5px;
-
 }
+
 .initials {
   position: relative;
   top: 0px; /* 25% of parent */
@@ -99,4 +92,3 @@ color: $dark-gray;
   margin: 0;
   width: 100px!important;
 }
-

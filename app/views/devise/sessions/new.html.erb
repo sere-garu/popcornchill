@@ -3,27 +3,23 @@
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
 
       <div class="login-form">
-        <h2>Login</h2>
-
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="login-fields">
             <%= f.input :email,
-                        required: false,
+                        required: true,
                         autofocus: true,
                         label: false,
-                        class: 'custom-input',
+                        placeholder: 'email@example.com',
                         input_html: { autocomplete: "email" } %>
 
             <%= f.input :password,
-                        required: false,
+                        required: true,
                         label: false,
-                        class: 'custom-input',
+                        placeholder: '••••••',
                         input_html: { autocomplete: "current-password" } %>
+
+            <%= f.button :submit, "Login", class: 'default-btn' %>
           </div>
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-
-          <%= f.button :submit, "Login" %>
-
           <%= render "devise/shared/links" %>
         <% end %>
       </div>
