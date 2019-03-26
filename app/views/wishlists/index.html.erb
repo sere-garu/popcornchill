@@ -1,4 +1,6 @@
-<h3 id="welcome">Welcome <%= current_user.name %>, set your watchlist:</h3>
+<h3 id="welcome">
+  Ehi <%= current_user.name %>, set your watchlist:
+</h3>
 
 <%= form_tag wishlists_path, method: :get do %>
   <div class="wishlist-search">
@@ -55,4 +57,3 @@
     <% end %>
   <% end %>
 </div>
-

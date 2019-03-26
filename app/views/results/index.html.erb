@@ -1,11 +1,15 @@
-<% @results.each_with_index do |movie, index| %>
-
-  <div class="card-event">
-    <div class="card-event-info">
-      <div class="event-title"><%= movie.trakt_payload['title'] %>
+<div style="margin-top: 64px; margin-bottom: 64px">
+  <% @results.each_with_index do |movie, index| %>
+    <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
+      <div>
+        <div class="movie-title">
+          <%= movie.trakt_payload['title'] %>
+        </div>
+        <div class="movie-year">
+          <%= movie.trakt_payload['year'] %>
+        </div>
       </div>
-      <h1 class="event-address"><%= movie.trakt_payload['year'] %></h1>
       <%= @matches_count[index] %>/<%= @users_count %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

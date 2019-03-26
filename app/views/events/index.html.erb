@@ -1,67 +1,64 @@
-<% if @pending_events.any? %>
-  <% @pending_events.each do |pending_event| %>
-    <% date = pending_event.date.strftime '%A, %e %B' %>
-    <div class="card-event">
-      <div class="card-event-info">
-        <div class="event-title"><%= date %></div>
-      </div>
-      <div class="card-buttons-avatar">
-        <div class="event-guests">
-          <%= render 'friends', event: pending_event %>
-          <div class="connected-buttons">
-            <%= link_to 'Reject', user_event_path(pending_event), method: :delete,
-            data: { confirm: 'Are you sure?' }, class: 'btn-sm action-left active' %>
-            <%= link_to 'Accept', user_event_path(pending_event), method: :patch, class: 'btn-sm action-left full' %>
+<div style="margin-top: 64px; margin-bottom: 64px">
+  <% if @pending_events.any? %>
+    <% @pending_events.each do |pending_event| %>
+      <% date = pending_event.date.strftime '%A, %e %B' %>
+      <div class="card-event">
+        <div class="card-event-info">
+          <div class="event-title"><%= date %></div>
+        </div>
+        <div class="card-buttons-avatar">
+          <div class="event-guests">
+            <%= render 'friends', event: pending_event %>
+            <div class="connected-buttons">
+              <%= link_to 'Reject', user_event_path(pending_event), method: :delete,
+              data: { confirm: 'Are you sure?' }, class: 'btn-sm action-left active' %>
+              <%= link_to 'Accept', user_event_path(pending_event), method: :patch, class: 'btn-sm action-left full' %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
 
-<% if @admin_events.any? %>
-  <% @admin_events.each do |admin_event| %>
-    <% date = admin_event.date.strftime '%A, %e %B' %>
-    <div class="card-event">
-      <div class="card-event-info">
+  <% if @admin_events.any? %>
+    <% @admin_events.each do |admin_event| %>
+      <% date = admin_event.date.strftime '%A, %e %B' %>
+      <div class="card-event">
+        <div class="card-event-info">
+          <div class="event-title"><%= date %></div>
+          <div class="event-more">
+          <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dxl0m2akr/image/upload/v1553521025/more_3.png" />
+            <div class="dropdown-menu">
+              <%= link_to 'Edit', edit_event_path(admin_event), class: "dropdown-item" %>
+              <%= link_to 'Delete', event_path(admin_event), method: :delete, class: 'dropdown-item'%>
+            </div >
+            </div>
+        </div>
+
+        <h1 class="event-address"><%= admin_event.address %></h1>
+
+        <div class="card-buttons-avatar">
+          <div class="event-guests"><%= render 'friends', event: admin_event %>
+          <%= render 'links', event: admin_event %></div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+  <% if @accepted_events.any? %>
+    <% @accepted_events.each do |accepted_event| %>
+      <% date = accepted_event.date.strftime '%A, %e %B' %>
+      <div class="card-event">
+        <div class="card-event-info">
         <div class="event-title"><%= date %></div>
-        <div class="event-more">
-        <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dxl0m2akr/image/upload/v1553521025/more_3.png" />
-          <div class="dropdown-menu">
-            <%= link_to 'Edit', edit_event_path(admin_event), class: "dropdown-item" %>
-            <%= link_to 'Delete', event_path(admin_event), method: :delete, class: 'dropdown-item'%>
-          </div >
-          </div>
+        </div>
+        <h1 class="event-address"><%= accepted_event.address %></h1>
+        <div class="card-buttons-avatar">
+          <div class="event-guests"><%= render 'friends', event: accepted_event %>
+          <%= render 'links', event: accepted_event %></div>
+        </div>
       </div>
-
-      <h1 class="event-address"><%= admin_event.address %></h1>
-
-      <div class="card-buttons-avatar">
-        <div class="event-guests"><%= render 'friends', event: admin_event %>
-        <%= render 'links', event: admin_event %></div>
-      </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
-
-
-<% if @accepted_events.any? %>
-  <% @accepted_events.each do |accepted_event| %>
-    <% date = accepted_event.date.strftime '%A, %e %B' %>
-    <div class="card-event">
-      <div class="card-event-info">
-      <div class="event-title"><%= date %></div>
-      </div>
-      <h1 class="event-address"><%= accepted_event.address %></h1>
-      <div class="card-buttons-avatar">
-        <div class="event-guests"><%= render 'friends', event: accepted_event %>
-        <%= render 'links', event: accepted_event %></div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
-
-
-
-
+</div>
