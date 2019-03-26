@@ -1,34 +1,35 @@
-<!-- _footer.html.erb
- -->
 <div class="footer">
-   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-
-      <%= link_to root_path, class:"footer-label" do %>
-         <%= image_tag "home.png", class: "navbar-brand" %>
-          <label class="footer-label">HOME</label>
+  <div>
+    <div class="item">
+      <%= link_to root_path do %>
+        <%= image_tag "home.png" %>
+        <br>
+        <label>HOME</label>
       <% end %>
+    </div>
 
-      <%= link_to new_event_path, class:"footer-label" do %>
-          <%= image_tag "add.png", class: "navbar-brand" %>
-          <label class="footer-label">NEW EVENT</label>
+    <div class="item">
+      <%= link_to new_event_path do %>
+        <%= image_tag "add.png" %>
+        <br>
+        <label>NEW EVENT</label>
       <% end %>
+    </div>
 
-      <%= link_to new_event_path, class:"footer-label" do %>
-          <%= image_tag "search (1).png", class: "navbar-brand" %>
-          <label class="footer-label">SEARCH</label>
+    <div class="item">
+      <%= link_to wishlists_path do %>
+        <%= image_tag "search.png" %>
+        <br>
+        <label>SEARCH</label>
       <% end %>
+    </div>
 
-      <%= link_to wishlists_path, class:"footer-label" do %>
-          <%= image_tag "clapperboard.png", class: "navbar-brand" %>
-          <label class="footer-label">WATCHLIST</label>
+    <div class="item">
+      <%= link_to wishlists_path do %>
+        <%= image_tag "clapperboard.png" %>
+        <br>
+        <label>WATCHLIST</label>
       <% end %>
-
-
-
+    </div>
   </div>
-
 </div>
-
-
-
-
