@@ -7,12 +7,13 @@
 }
 
 .movie-title {
-	color: $dark-gray;
+	color: $light-gray;
 	font-weight: 500;
+	letter-spacing: 1.5px;
 }
 
 .movie-year {
-	color: $light-gray;
+	color: $dark-gray;
   font-weight: 150;
 }
 

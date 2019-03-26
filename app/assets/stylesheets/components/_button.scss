@@ -22,9 +22,16 @@
   float: right;
 }
 
-// .wishlist-btn:hover {
-//   color: $dark-black;
-// }
+
+
+#add-btn {
+  border: 1px solid yellow;
+  padding: 3px 19px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  font-size: 10px;
+}  
+
 
 .action-left .full {
   background: $light-yellow;
