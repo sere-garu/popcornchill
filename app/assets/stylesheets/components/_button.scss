@@ -1,3 +1,14 @@
+.default-btn {
+  background: $light-yellow;
+  color: $dark-black;
+  font-weight: 500;
+  height: 27px;
+  margin-top: 27px;
+  padding: 0;
+  width: 155px;
+  font-size: 12.8px;
+}
+
 .action-left .full {
   background: $light-yellow;
   border: 1px solid $light-yellow;
@@ -31,9 +42,7 @@
   line-height: normal;
   text-align: center;
 
-
   color: $light-yellow;
-
 }
 
 

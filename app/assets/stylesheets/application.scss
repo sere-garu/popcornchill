@@ -17,3 +17,13 @@ body {
   background-color: $dark-black;
   color: $light-gray;
 }
+
+a {
+  color: $light-yellow;
+  font-size: 300;
+  transition: .2s color ease;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}

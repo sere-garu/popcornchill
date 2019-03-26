@@ -1,0 +1,40 @@
+.event-form {
+  text-align: center;
+  margin-top: 64px;
+}
+
+.event-fields {
+  margin-bottom: 27px;
+}
+
+.event-fields > div {
+  margin: 0;
+}
+
+.event-fields .form-control {
+  border-radius: 0;
+  background: $black;
+  border: none;
+  color: $dark-gray;
+  &:focus {
+   background: $black;
+   color: $light-gray;
+  }
+}
+
+.event-fields .datepicker {
+  border-radius: 20px 20px 0 0;
+}
+
+.event-fields .string {
+  border-bottom: 1px solid $dark-black;
+}
+
+.event-fields .friends input {
+  border-bottom: 1px solid $dark-black;
+}
+
+.event-fields .friends input:last-child {
+  border: none;
+  border-radius: 0 0 20px 20px;
+}
