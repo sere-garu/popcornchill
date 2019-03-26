@@ -51,12 +51,16 @@
           <%#= movie.id %>
 
           <%= movie.trakt_payload['title'] %>
+          
+          <button class="wishlist-btn">
+            <%= render 'link_to_create',
+              text: 'Add',
+              movie: movie %>
+          </button>
 
-          <%= render 'link_to_create',
-            text: 'yep',
-            movie: movie,
-            color: 'text-success' %>
+          <%#= render 'link_to_create', f.button :submit, "ADD", class: 'default-btn'%>
 
+          
           <%#= render 'link_to_create',
             text: 'nope',
             movie: movie,
