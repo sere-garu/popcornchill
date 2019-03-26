@@ -16,10 +16,9 @@
   margin: 0;
 }
 
-.form-control {
-  border-radius: 20px;
+.login-fields .form-control {
+  border-radius: 0;
   background: $black;
-  border: none;
   color: $dark-gray;
   &:focus {
    background: $black;
@@ -27,11 +26,11 @@
   }
 }
 
-.email {
+.login-fields .email {
   border-bottom: 1px solid $dark-black;
   border-radius: 20px 20px 0 0;
 }
 
-.password {
+.login-fields .password {
   border-radius: 0 0 20px 20px;
 }
