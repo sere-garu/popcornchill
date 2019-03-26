@@ -14,11 +14,17 @@
   color: $dark-black;
   font-weight: 500;
   height: 27px;
-  margin-top: 27px;
+  // margin-top: 5px;
+  margin-right: 5px;
   padding: 0;
   width: 78px;
   font-size: 12.8px;
+  float: right;
 }
+
+// .wishlist-btn:hover {
+//   color: $dark-black;
+// }
 
 .action-left .full {
   background: $light-yellow;
