@@ -2,7 +2,7 @@
   background: transparent;
   border-bottom: 1px solid $black;
   box-sizing: border-box;
-  height: 64px;
+  // height: 64px;
   justify-content: space-between;
 }
 
@@ -15,22 +15,24 @@
 }
 
 .avatar img {
-  border: 1px solid $yellow;
+  border: 1px solid $light-yellow;
 }
 
 .user {
-  padding: 10px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
-  border: 2px solid $yellow;
+  border: 1px solid $light-yellow;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #initial-letter {
-  color: $yellow;
+  color: $light-yellow;
   font-size: 1em;
 }
 
-// .nav-link {
-//   color: $light-yellow !important;
-//   font-weight: 500;
-//   font-size: 25px;
-// }
+.nav-item .nav-link {
+  color: $light-yellow !important;
+}
