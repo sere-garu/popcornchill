@@ -1,10 +1,18 @@
 class ResultsController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
+
     pre_results = @event.results.reject { |r| r.preference == 'nope' }
     movie_ids = pre_results.pluck(:movie_id)
+
     matches = movie_ids.select { |e| movie_ids.count(e) > 1 }
-    @results = @event.results.where(movie: matches)
+
+    @matches_count = matches.uniq.map { |e| matches.count(e) }
+
+    results_count = @event.results.where(movie: matches)
+    @results = results_count.map(&:movie).uniq
+
+    @users_count = @event.users.count
   end
 
   def create
