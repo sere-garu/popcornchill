@@ -1,7 +1,11 @@
-<h3>Results for <%= @event.name %></h3>
+<% @results.each_with_index do |movie, index| %>
 
-<% @results.each do |result| %>
-  <p>
-    <%= result.user.name %> -> <%= result.movie.trakt_payload['title'] %>
-  </p>
+  <div class="card-event">
+    <div class="card-event-info">
+      <div class="event-title"><%= movie.trakt_payload['title'] %>
+      </div>
+      <h1 class="event-address"><%= movie.trakt_payload['year'] %></h1>
+      <%= @matches_count[index] %>/<%= @users_count %>
+    </div>
+  </div>
 <% end %>
