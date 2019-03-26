@@ -1,31 +1,22 @@
 class WishlistsController < ApplicationController
   def index
     @wishlists = Wishlist.where(user: current_user, preference: 'yep')
-    
+
     Wishlist.create_from_api
-    
+
     @movies_payload = Movie.all
   end
 
   def create
-    @wishlist = current_user.wishlists.new(wishlist_params)
+    @wishlist = current_user.wishlists.create!(wishlist_params)
 
-    if @wishlist.save
-      flash[:notice] = "#{Wishlist.all.count} wishlists"
-    else
-      flash[:notice] = @wishlist.errors.full_messages
-    end
     redirect_to wishlists_path
   end
 
   def destroy
     @wishlist = Wishlist.find(params[:id])
+    @wishlist.destroy
 
-    if @wishlist.destroy
-      flash[:notice] = "#{Wishlist.all.count} wishlists"
-    else
-      flash[:notice] = @wishlist.errors.full_messages
-    end
     redirect_to wishlists_path
   end
 
