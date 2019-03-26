@@ -1,17 +1,15 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <% if user_signed_in? %>
       <span class="avatar dropdown-toggle">
       <% if current_user.photo.present? %>
-              <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %>
-
-              <%#= image_tag 'https://res.cloudinary.com/dxl0m2akr/image/upload/v1553097599/blank-profile-picture.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%#= image_tag 'https://res.cloudinary.com/dxl0m2akr/image/upload/v1553097599/blank-profile-picture.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="user">
-          <!-- <i class="far fa-user"></i> -->
-          <span id="initial-letter"><%= current_user.name[0].upcase %></span>
+          <span id="initial-letter">
+            <%= current_user.name[0].upcase %>
+          </span>
         </div>
       <% end %>
       </span>
@@ -19,7 +17,6 @@
       <span class="navbar-toggler-icon"></span>
     <% end %>
   </button>
-
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">

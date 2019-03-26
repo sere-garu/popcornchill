@@ -1,40 +1,33 @@
-// _footer.scss
 .footer {
-  position: fixed;
+  background: transparent;
   bottom: 0;
-  width: 100%;
-  background: white;
-  margin-top: 50px;
+  padding: 9px 10vw 0 10vw;
+
+  position: fixed;
+  width: 100vw;
+  border-top: 1px solid $black;
+  box-sizing: border-box;
+  height: 64px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-
-
-.fas {
-color: #FCBA04;
-}
-
-.far {
-color: #FCBA04;
-}
-
-
-
-.navbar-lewagon {
-
-  background-color: #141414;
-}
-
-label {
-  margin-bottom: 0;
-  line-height: 0.8;
-  color: $light-gray;
-  font-weight: 100;
-  font-size: 9px;
-}
-
-.footer-label {
+.item {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  img {
+    width: 24px;
+  }
+  label {
+    margin-bottom: 0;
+    line-height: 0;
+    color: $dark-gray;
+    font-weight: 300;
+    font-size: 10.24px;
+  }
 }
-
-
