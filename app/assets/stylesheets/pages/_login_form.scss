@@ -1,0 +1,37 @@
+.login-form {
+  text-align: center;
+  margin-top: 64px;
+  h2 {
+    color: $light-yellow !important;
+    font-weight: 500;
+    font-size: 25px;
+  }
+}
+
+.login-fields {
+  margin-bottom: 27px;
+}
+
+.login-fields > div {
+  margin: 0;
+}
+
+.login-fields .form-control {
+  border-radius: 0;
+  background: $black;
+  color: $dark-gray;
+  border: none;
+  &:focus {
+   background: $black;
+   color: $light-gray;
+  }
+}
+
+.login-fields .email {
+  border-bottom: 1px solid $dark-black;
+  border-radius: 20px 20px 0 0;
+}
+
+.login-fields .password {
+  border-radius: 0 0 20px 20px;
+}
