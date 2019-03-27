@@ -9,19 +9,21 @@
     </div>
 
     <div class="item">
-      <%= link_to new_event_path do %>
-        <%= image_tag "add.png" %>
+      <%= active_link_to new_event_path, active: :exact do %>
+      <i class="fas fa-plus"></i>
         <br>
         <label>NEW EVENT</label>
       <% end %>
     </div>
 
     <div class="item">
-      <%= link_to wishlists_path do %>
-        <%= image_tag "clapperboard.png" %>
+      <%= active_link_to wishlists_path, active: :exact do %>
+        <i class="fas fa-film"></i>
         <br>
         <label>WATCHLIST</label>
       <% end %>
     </div>
   </div>
 </div>
+
+
