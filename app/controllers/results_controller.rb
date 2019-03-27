@@ -23,11 +23,7 @@ class ResultsController < ApplicationController
 
     @result.user_id = current_user.id
 
-    if @result.save
-      # flash[:notice] = "#{Result.all.count} results"
-    else
-      # flash[:notice] = @result.errors
-    end
+    @result.save
 
     respond_to do |format|
       format.html { redirect_to event_path(@event) }

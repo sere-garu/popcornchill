@@ -21,8 +21,7 @@ class EventsController < ApplicationController
     if @event.save
       UserEvent.create(user: current_user, event: @event, status: 'admin')
       event_friends(params[:emails], @event)
-      flash[:notice] = "#{Event.all.count} events"
-      redirect_to root_path
+      redirect_to events_path
     else
       render 'new'
     end
@@ -35,8 +34,7 @@ class EventsController < ApplicationController
 
     if @event.save
       event_friends(params[:emails], @event)
-      flash[:notice] = "#{Event.all.count} events"
-      redirect_to root_path
+      redirect_to events_path
     else
       render 'edit'
     end
@@ -44,8 +42,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    flash[:notice] = "#{Event.all.count} events"
-    redirect_to root_path
+    redirect_to events_path
   end
 
   private
