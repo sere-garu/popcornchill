@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resources :wishlists, only: %i[index create destroy]
   resources :user_events, only: %i[update destroy]
-  # get '/popit', to: 'pages#home'
 
   root to: 'pages#home'
 end
