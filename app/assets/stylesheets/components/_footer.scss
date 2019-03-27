@@ -33,12 +33,15 @@
 }
 
 
-.fas {
+i {
 font-size: 23px;
 color: #999;
 }
 
 
-.active_link_to {
-color: #FCBA04;
+.active {
+//color: #FCBA04;
+label, i {
+color: #FFFD77;
+}
 }
