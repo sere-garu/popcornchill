@@ -1,4 +1,4 @@
-<h3>Movies for <%= @event.name %></h3>
+<h3>Swipe</h3>
 
 
 <div class="global-stack">
@@ -23,6 +23,7 @@
           <h6 class="no-left">No</h6>        
           <h6 class="yes-right">Yes</h6>        
         </div>
+
       </div>
 
       <!--         <div>
@@ -44,6 +45,7 @@
       event_id: @event.id
       ), method: :post, class: 'text-success' %>
       </div> -->
+
       </div>
       
       <% else %>
@@ -55,6 +57,10 @@
   </div>
 </div>
 
+
+<% else %>
+  <h3 style="text-align: center">No matches!</h3>
+<% end %>
 
 
 <% if @event.everyone_swiped?(@movies) %>
