@@ -3,18 +3,15 @@
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
     <% next if @event.user_already_swiped(current_user, movie) %>
-    
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://unsplash.com/photos/J39X2xX_8CQ)">
-
-      <!-- NEED TO ADD PHOTO -->
+    <div class="card-trip">
       
-      <!-- <img src="<%#= movie.image_url %>" alt=""> 
-
-
-      <h4><%#= movie.trakt_payload["title"] %></h4>
-      <p><%#= movie.trakt_payload["year"] %>, Director</p>
-      -->
-      
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
+      <div class="card-trip-infos">
+        <div>
+          <h2>Title here</h2>
+        </div>
+        <h2 class="card-trip-pricing">imdb rating</h2>
+      </div>
       <div>
         <%= link_to 'Nope', event_results_path(
           @event,
@@ -23,9 +20,6 @@
           user_id: current_user,
           event_id: @event.id
         ), method: :post, class: 'text-danger' %>
-        <%#= render 'swipe', text: 'nope', event: @event, movie: movie, color: 'text-danger' %>
-
-        <%#= movie.id %>
 
         <%= movie.trakt_payload['title'] %>
 
@@ -46,28 +40,3 @@
 <% if @event.everyone_swiped?(@movies) %>
   <% controller.redirect_to event_results_path(@event) %>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
