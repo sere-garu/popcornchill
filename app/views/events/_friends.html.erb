@@ -3,7 +3,7 @@
       <% if friend.user.photo.present? %>
         <%= cl_image_tag friend.user.photo, class: "avatar"%>
       <% else %>
-        <div class="avatar-circle"><div class="initials"><%= friend.user.name[0].upcase %></div></div>
+        <div class="avatar-circle"><div class="initials"><%= (friend.user.name || friend.user.email)[0].upcase %></div></div>
       <% end %>
     </div>
   <% end %>

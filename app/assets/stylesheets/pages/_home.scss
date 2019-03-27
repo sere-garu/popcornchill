@@ -1,0 +1,57 @@
+.box-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-20 {
+  flex: 0 1 20vh;
+  padding: 0 10vw;
+  h2 {
+    color: $light-yellow
+  }
+  .home-btn {
+  border: 1px solid $light-gray;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 150px;
+  height: 27px;
+  background-color: $dark-black;
+
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+  color: $light-gray;
+
+  }
+}
+
+.box-40 {
+  flex: 0 1 40vh;
+  padding: 0 15vw;
+  img {
+    width: 250px;
+  }
+}
+
+.element-bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.element-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.element-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
