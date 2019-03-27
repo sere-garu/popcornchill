@@ -24,17 +24,17 @@
           <%= movie.trakt_payload['title'] %>
         </div>
         <div class="movie-year">
-          <%= movie.trakt_payload['year'] %>
-        </div>
-      </div>
-      <div class="matches-count">
+          <div class="matches-count">
         <% @matches_count[index].times do %>
-          <span class="fa fa-star checked"></span>
+          <span class="fas fa-user"></span>
         <% end %>
         <% (@users_count - @matches_count[index]).times do %>
-         <span class="fa fa-star"></span>
+         <span class="far fa-user"></span>
          <% end %>
       </div>
+        </div>
+      </div>
+
 
     </div>
   <% end %>
