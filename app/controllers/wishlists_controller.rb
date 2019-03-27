@@ -7,6 +7,10 @@ class WishlistsController < ApplicationController
     @movies_payload = Movie.all
   end
 
+  def watchlist
+    @wishlists = Wishlist.where(user: current_user, preference: 'yep')
+  end
+
   def create
     @wishlist = current_user.wishlists.create!(wishlist_params)
 
@@ -17,7 +21,7 @@ class WishlistsController < ApplicationController
     @wishlist = Wishlist.find(params[:id])
     @wishlist.destroy
 
-    redirect_to wishlists_path
+    redirect_to watchlist_path
   end
 
   private

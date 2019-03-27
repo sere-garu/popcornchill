@@ -1,4 +1,4 @@
-<h3>Movies for <%= @event.name %></h3>
+<h3>Swipe</h3>
 
 
 <div class="global-stack">
@@ -16,9 +16,8 @@
           </div>
           <h2 class="card-trip-pricing"><%= movie.trakt_payload['year'] %></h2>
         </div>
-
 <!--         <div>
-          <%= link_to 'Nope', event_results_path(
+          <%#= link_to 'Nope', event_results_path(
             @event,
             preference: 'nope',
             movie_id: movie.id,
@@ -26,9 +25,9 @@
             event_id: @event.id
           ), method: :post, class: 'text-danger' %>
 
-          <%= movie.trakt_payload['title'] %>
+          <%#= movie.trakt_payload['title'] %>
 
-          <%= link_to 'Yep', event_results_path(
+          <%#= link_to 'Yep', event_results_path(
             @event,
             preference: 'yep',
             movie_id: movie.id,
@@ -40,7 +39,6 @@
     <% end %>
   </div>
 </div>
-
 
 <% else %>
   <h3 style="text-align: center">No matches!</h3>

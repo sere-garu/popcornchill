@@ -1,16 +1,16 @@
 <h3 id="welcome">
-  Hei <%= current_user.name %>, set your watchlist:
+  Hi <%= current_user.name %>, set your watchlist:
 </h3>
 
 <div class="counter">
-    <%= @wishlists.size %>
+  <%= @wishlists.size %>
 </div>
 
 <%= form_tag wishlists_path, method: :get do %>
   <div class="wishlist-search">
     <div class="inner-addon right-addon">
       <div class="magnifier">
-        <%= image_tag "search.png", alt: "Create your wishlist", width: 15 %>
+        <i class="fas fa-search"></i>
       </div>
       <p>
         <%= text_field_tag :query,
@@ -22,27 +22,7 @@
   </div>
 <% end %>
 
-<div class="watchlist">
-  <% unless @wishlists.nil? %>
-    <% @wishlists.each do |wishlist| %>
-      <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
-        <div>
-          <div class="movie-title">
-            <%= wishlist.movie.trakt_payload['title'] %>
-          </div>
-
-          <div class="movie-year">
-            <%= wishlist.movie.trakt_payload['year'] %>
-          </div>
-        </div>
-        <%= link_to 'Remove', wishlist, method: :delete, class: 'add-btn' %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
 <div class="pick-movie">
-  <h3 id="select-movie">Pick a movie</h3>
   <% unless @movies_payload.nil? %>
     <% @movies_payload.each do |movie| %>
       <% next if current_user.wishlists.where(movie: movie).any? %>
@@ -61,5 +41,3 @@
     <% end %>
   <% end %>
 </div>
-
-
