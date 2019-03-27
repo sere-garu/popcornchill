@@ -45,8 +45,31 @@ class Movie < ApplicationRecord
     }
 
     data = RestClient.get "#{ROOT_URL}#{MOVIES_PATH}", headers
-
     JSON.parse(data)
+  end
+
+  def image_url
+    # return image frm the json if we have one
+    current = self.trakt_payload["image_url"]
+    return current if current.present?
+
+    # Save image in the json:
+    current_payload = self.trakt_payload
+    image_scraped_local = self.image_scraped
+    current_payload["image_url"] = image_scraped_local
+
+    self.trakt_payload = current_payload
+    self.save
+
+    current_payload["image_url"]
+  end
+
+  def image_scraped
+    base = "https://www.imdb.com/title/#{self.trakt_payload["ids"]["imdb"]}/"
+    html = Nokogiri::HTML(open(base).read)
+    html.search('meta[property="og:image"]').first.attributes["content"].to_s
+  rescue
+    nil
   end
 
   def preference?(user)

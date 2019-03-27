@@ -1,38 +1,47 @@
 <h3>Movies for <%= @event.name %></h3>
 
-<% if @movies.any? %>
-  <% @movies.each do |movie| %>
-    <% next if @event.user_already_swiped(current_user, movie) %>
-    <div class="card-trip">
-      
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
-      <div class="card-trip-infos">
-        <div>
-          <h2>Title here</h2>
+
+<div class="global-stack">
+  <div class="stack">
+  <% if @movies.any? %>
+    <% @movies.each do |movie| %>
+      <% next if @event.user_already_swiped(current_user, movie) %>
+      <div class="card-trip" data-event-id="<%= @event.id %>" data-movie-id="<%= movie.id %>">
+
+        <img src="<%= movie.image_url %>" height="300px" width="auto" alt="">
+
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= movie.trakt_payload['title'] %></h2>
+          </div>
+          <h2 class="card-trip-pricing"><%= movie.trakt_payload['year'] %></h2>
         </div>
-        <h2 class="card-trip-pricing">imdb rating</h2>
-      </div>
-      <div>
-        <%= link_to 'Nope', event_results_path(
-          @event,
-          preference: 'nope',
-          movie_id: movie.id,
-          user_id: current_user,
-          event_id: @event.id
-        ), method: :post, class: 'text-danger' %>
 
-        <%= movie.trakt_payload['title'] %>
+<!--         <div>
+          <%= link_to 'Nope', event_results_path(
+            @event,
+            preference: 'nope',
+            movie_id: movie.id,
+            user_id: current_user,
+            event_id: @event.id
+          ), method: :post, class: 'text-danger' %>
 
-        <%= link_to 'Yep', event_results_path(
-          @event,
-          preference: 'yep',
-          movie_id: movie.id,
-          user_id: current_user,
-          event_id: @event.id
-        ), method: :post, class: 'text-success' %>
+          <%= movie.trakt_payload['title'] %>
+
+          <%= link_to 'Yep', event_results_path(
+            @event,
+            preference: 'yep',
+            movie_id: movie.id,
+            user_id: current_user,
+            event_id: @event.id
+          ), method: :post, class: 'text-success' %>
+        </div> -->
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+</div>
+
+
 <% else %>
   <h3 style="text-align: center">No matches!</h3>
 <% end %>
