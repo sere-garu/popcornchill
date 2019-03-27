@@ -2,6 +2,10 @@
   Hei <%= current_user.name %>, set your watchlist:
 </h3>
 
+<div class="counter">
+    <%= @wishlists.size %>
+</div>
+
 <%= form_tag wishlists_path, method: :get do %>
   <div class="wishlist-search">
     <div class="inner-addon right-addon">
@@ -57,3 +61,5 @@
     <% end %>
   <% end %>
 </div>
+
+
