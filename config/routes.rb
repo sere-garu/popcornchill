@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :wishlists, only: %i[index create destroy]
   resources :user_events, only: %i[update destroy]
 
+  get '/watchlist', to: 'wishlists#watchlist'
   root to: 'pages#home'
 end
