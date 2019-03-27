@@ -1,0 +1,38 @@
+.box-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-20 {
+  flex: 0 1 20vh;
+  padding: 0 10vw;
+  h2 {
+    color: $light-yellow
+  }
+  button {
+    background-color: #ff4040;
+  }
+}
+
+.box-40 {
+  flex: 0 1 40vh;
+  padding: 0 15vw;
+}
+
+.element-bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.element-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.element-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
