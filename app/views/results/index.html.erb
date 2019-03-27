@@ -1,3 +1,21 @@
+<!-- <div style="margin-top: 64px; margin-bottom: 64px">
+  <%# @results.each_with_index do |movie, index| %>
+    <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
+      <div>
+        <div class="movie-title">
+          <%#= movie.trakt_payload['title'] %>
+        </div>
+        <div class="movie-year">
+          <%#= movie.trakt_payload['year'] %>
+        </div>
+      </div>
+      <div class="matches-count">
+      <%#= @matches_count[index] %>/<%= @users_count %>
+      </div>
+    </div>
+  <%# end %>
+</div> -->
+
 <div style="margin-top: 64px; margin-bottom: 64px">
   <% @results.each_with_index do |movie, index| %>
     <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
@@ -9,7 +27,15 @@
           <%= movie.trakt_payload['year'] %>
         </div>
       </div>
-      <%= @matches_count[index] %>/<%= @users_count %>
+      <div class="matches-count">
+        <% @matches_count[index].times do %>
+          <span class="fa fa-star checked"></span>
+        <% end %>
+        <% (@users_count - @matches_count[index]).times do %>
+         <span class="fa fa-star"></span>
+         <% end %>
+      </div>
+
     </div>
   <% end %>
 </div>

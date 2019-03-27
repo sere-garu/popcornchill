@@ -25,12 +25,19 @@
 
 
 
-#add-btn {
-  border: 1px solid yellow;
+.add-btn {
+  border: 1px solid $light-yellow;
   padding: 3px 19px;
   border-radius: 6px;
   letter-spacing: 1px;
-  font-size: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.8px;
+  line-height: normal;
+  text-align: center;
+
+  color: $light-yellow;
 }
 
 
