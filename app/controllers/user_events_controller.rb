@@ -8,13 +8,13 @@ class UserEventsController < ApplicationController
     else
       flash[:notice] = user_event.errors
     end
-    redirect_to root_path
+    redirect_to events_path
   end
 
   def destroy
     event = Event.find(params[:id])
     event.user_events.where(user: current_user).take.destroy
     flash[:notice] = "#{UserEvent.all.count} user events"
-    redirect_to root_path
+    redirect_to events_path
   end
 end

@@ -1,8 +1,8 @@
 <div class="footer">
   <div>
     <div class="item">
-      <%= active_link_to root_path, active: :exact do %>
-    <i class="fas fa-home"></i>
+      <%= link_to events_path do %>
+        <%= image_tag "home.png" %>
         <br>
         <label>HOME</label>
       <% end %>

@@ -1,4 +1,6 @@
 class ResultsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   def index
     @event = Event.find(params[:event_id])
 
@@ -18,12 +20,15 @@ class ResultsController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @result = @event.results.new(result_params)
-    if @result.save
-      flash[:notice] = "#{Result.all.count} results"
-    else
-      flash[:notice] = @result.errors
+
+    @result.user_id = current_user.id
+
+    @result.save
+
+    respond_to do |format|
+      format.html { redirect_to event_path(@event) }
+      format.json { render json: @result }
     end
-    redirect_to event_path @event
   end
 
   private
