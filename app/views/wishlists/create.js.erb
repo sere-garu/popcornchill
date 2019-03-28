@@ -1,3 +1,2 @@
 document.querySelector("[data-movie-id='<%= @movie.id %>']").remove();
-document.querySelector('.counter').innerText = Number(document.querySelector('.counter').innerText) + 1;
-
+document.querySelector('.counter-right').innerText = parseInt(document.querySelector('.counter-right').innerText, 10) + 1;
