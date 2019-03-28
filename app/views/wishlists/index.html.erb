@@ -13,8 +13,8 @@
         <i class="fas fa-search"></i>
       </div>
       <p>
-        <%= text_field_tag :query,
-          params[:query],
+        <%= text_field_tag :q,
+          params[:q],
           class: 'form-control', id: "search-field",
           placeholder: 'title, director, year, actor, genre' %>
       </p>
@@ -26,7 +26,9 @@
   <% unless @movies_payload.nil? %>
     <% @movies_payload.each do |movie| %>
       <% next if current_user.wishlists.where(movie: movie).any? %>
-      <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
+      <div class="movie-card"
+           style="display: flex; justify-content: space-between; align-items: center"
+           data-movie-id="<%= movie.id %>">
         <div>
           <div class="movie-title">
             <%= movie.trakt_payload['title'] %>
@@ -36,7 +38,7 @@
             <%= movie.trakt_payload['year'] %>
           </div>
         </div>
-        <%= render 'link_to_create', text: 'add', movie: movie, class: 'add-btn' %>
+        <%= render 'link_to_create', text: 'add', movie: movie %>
       </div>
     <% end %>
   <% end %>
