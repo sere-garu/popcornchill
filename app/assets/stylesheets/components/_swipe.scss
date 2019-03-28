@@ -47,36 +47,40 @@
 
 
 .no-left {
-    color: $light-yellow;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12.8px;
-    line-height: normal;
-    text-align: center;
-    width: 40px;
-    border: 2px solid $light-yellow;
-    background: $dark-black;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    // color: $light-yellow;
+    // font-family: Poppins;
+    // font-style: normal;
+    // font-weight: 500;
+    // font-size: 12.8px;
+    // line-height: normal;
+    // text-align: center;
+    // width: 40px;
+    // border: 2px solid $light-yellow;
+    // background: $dark-black;
+    // border-top-right-radius: 5px;
+    // border-bottom-right-radius: 5px;
+    border: none !important;
+    margin-bottom: 50vh;
 
 
 
 }
 
 .yes-right {
-    color: $dark-black;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12.8px;
-    line-height: normal;
-    text-align: center;
-    width: 40px;
-    border: 2px solid $light-yellow;
-    background: $light-yellow;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    // color: $dark-black;
+    // font-family: Poppins;
+    // font-style: normal;
+    // font-weight: 500;
+    // font-size: 12.8px;
+    // line-height: normal;
+    // text-align: center;
+    // width: 40px;
+    // border: 2px solid $light-yellow;
+    // background: $light-yellow;
+    // border-top-left-radius: 5px;
+    // border-bottom-left-radius: 5px;
+    border: none !important;
+    margin-bottom: 50vh;
 }
 
 

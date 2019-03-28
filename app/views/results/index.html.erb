@@ -15,27 +15,54 @@
     </div>
   <%# end %>
 </div> -->
+<% date = @event.date.strftime '%A, %e %B' %>
+<h3>Results for <%= date %></h3>
 
-<div style="margin-top: 64px; margin-bottom: 64px">
-  <% @results.each_with_index do |movie, index| %>
-    <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
-      <div>
-        <div class="movie-title">
-          <%= movie.trakt_payload['title'] %>
-        </div>
-        <div class="movie-year">
-          <div class="matches-count">
-        <% @matches_count[index].times do %>
-          <span class="fas fa-user"></span>
-        <% end %>
-        <% (@users_count - @matches_count[index]).times do %>
-         <span class="far fa-user"></span>
-         <% end %>
+<% if @results.any? %>
+  <div style="margin-top: 64px; margin-bottom: 64px">
+    <% @results.each_with_index do |movie, index| %>
+      <div class="movie-card">
+      <!-- <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center"> -->
+          <div class="row" >
+
+            <div class="col-3">
+                <img src="<%= movie.image_url %>" style='width: 80%; height: auto;' alt="">
+            </div>
+
+            <div class="col-9">
+              <div class="movie-title">
+                <%= movie.trakt_payload['title'] %>
+              </div>
+
+              <div class="movie-year">
+                <div class="matches-count">
+                  <% @matches_count[index].times do %>
+                    <span class="fas fa-user"></span>
+                  <% end %>
+                  <% (@users_count - @matches_count[index]).times do %>
+                   <span class="far fa-user"></span>
+                   <% end %>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
       </div>
-        </div>
-      </div>
-
-
+    <% end %>
+  </div>
+<% else %>
+  <div class="box-flex">
+    <div class="box-20 element-bottom text-center">
+     <h3>No matches yet</h3>
     </div>
-  <% end %>
-</div>
+    <div class="box-20 element-top text-center">
+     <p>Have you considered changing friends?</p>
+    </div>
+    <div class="box-40 element-center">
+      <%= image_tag 'undraw_no_matches.svg' %>
+    </div>
+  </div>
+<% end %>
