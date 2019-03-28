@@ -21,22 +21,35 @@
 <% if @results.any? %>
   <div style="margin-top: 64px; margin-bottom: 64px">
     <% @results.each_with_index do |movie, index| %>
-      <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center">
-        <div>
-          <div class="movie-title">
-            <%= movie.trakt_payload['title'] %>
+      <div class="movie-card">
+      <!-- <div class="movie-card" style="display:flex; justify-content:space-between; align-items: center"> -->
+          <div class="row" >
+
+            <div class="col-3">
+                <img src="<%= movie.image_url %>" style='width: 80%; height: auto;' alt="">
+            </div>
+
+            <div class="col-9">
+              <div class="movie-title">
+                <%= movie.trakt_payload['title'] %>
+              </div>
+
+              <div class="movie-year">
+                <div class="matches-count">
+                  <% @matches_count[index].times do %>
+                    <span class="fas fa-user"></span>
+                  <% end %>
+                  <% (@users_count - @matches_count[index]).times do %>
+                   <span class="far fa-user"></span>
+                   <% end %>
+                </div>
+              </div>
+            </div>
+
+
+
           </div>
-          <div class="movie-year">
-            <div class="matches-count">
-          <% @matches_count[index].times do %>
-            <span class="fas fa-user"></span>
-          <% end %>
-          <% (@users_count - @matches_count[index]).times do %>
-           <span class="far fa-user"></span>
-           <% end %>
-        </div>
-          </div>
-        </div>
+
       </div>
     <% end %>
   </div>

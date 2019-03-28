@@ -9,6 +9,10 @@ class EventsController < ApplicationController
 
   def show
     @movies = Movie.in_common(@event)
+
+    if @event.everyone_swiped?(@movies)
+      redirect_to event_results_path(@event)
+    end
   end
 
   def new
