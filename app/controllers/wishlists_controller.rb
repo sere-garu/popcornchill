@@ -12,16 +12,17 @@ class WishlistsController < ApplicationController
   end
 
   def create
-    @wishlist = current_user.wishlists.create!(wishlist_params)
-
-    redirect_to wishlists_path
+    @wishlist = current_user.wishlists.create(wishlist_params)
+    @movie = Movie.find(params[:wishlist][:movie_id])
+    respond_to do |format|
+      format.html { redirect_to wishlists_path }
+      format.js
+    end
   end
 
   def destroy
     @wishlist = Wishlist.find(params[:id])
     @wishlist.destroy
-
-    redirect_to watchlist_path
   end
 
   private
