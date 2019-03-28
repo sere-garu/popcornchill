@@ -4,7 +4,7 @@ class WishlistsController < ApplicationController
 
     Wishlist.create_from_api
 
-    @movies_payload = Movie.all
+    @movies_payload = params[:q].present? ? Movie.where("trakt_payload->>'title' ILIKE ?", "%#{params[:q]}%") : Movie.all
   end
 
   def watchlist
