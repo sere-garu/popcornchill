@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2019_03_20_142906) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "name"
     t.datetime "date"
     t.string "address"
     t.float "latitude"
@@ -70,7 +69,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_142906) do
   end
 
   create_table "wishlists", force: :cascade do |t|
-    t.string "preference", default: "nope"
+    t.string "preference"
     t.bigint "user_id"
     t.bigint "movie_id"
     t.datetime "created_at", null: false
